@@ -17,10 +17,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `blog_site`
+-- Database: `blog_site_test`
 --
-CREATE DATABASE IF NOT EXISTS `blog_site` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `blog_site`;
+CREATE DATABASE IF NOT EXISTS `blog_site_test` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `blog_site_test`;
 
 -- --------------------------------------------------------
 
