@@ -235,7 +235,7 @@ namespace BlogSite.Models
     {
         MySqlConnection conn = DB.Connection();
         conn.Open();
-        MySqlCommand cmd = new MySqlCommand( "DELETE FROM blogs WHERE id = @BlogId;", conn);
+        MySqlCommand cmd = new MySqlCommand( "DELETE FROM blogs WHERE id = @BlogId; DELETE FROM blogs_communities WHERE blog_id = @BlogId;", conn);
         MySqlParameter blogIdParameter = new MySqlParameter("@BlogId", _id);
         cmd.Parameters.Add(blogIdParameter);
         cmd.ExecuteNonQuery();
@@ -304,6 +304,68 @@ namespace BlogSite.Models
           {
             conn.Dispose();
           }
+        }
+      }
+
+      public List<Community> GetCommunities()
+      {
+        List<Community> allCommunities = new List<Community>{};
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
+        var cmd = conn.CreateCommand() as MySqlCommand;
+        cmd.CommandText = @"SELECT communties.* FROM communities JOIN blogs_communities ON (communities.id = blogs_communities.blog_id) WHERE blog_id = @thisId;";
+        MySqlParameter thisId = new MySqlParameter("@thisId", _id);
+        cmd.Parameters.Add(thisId);
+        MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+        while(rdr.Read())
+        {
+          int communityId = rdr.GetInt32(0);
+          string communityName = rdr.GetString(1);
+          string communityDescription = rdr.GetString(2);
+          Community thisCommunity = new Community(communityName, communityDescription, communityId);
+          allCommunities.Add(thisCommunity);
+        }
+        conn.Close();
+        if(conn != null)
+        {
+          conn.Dispose();
+        }
+        return allCommunities;
+      }
+
+      public void AddCommunity(int communityId)
+      {
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
+        var cmd = conn.CreateCommand() as MySqlCommand;
+        cmd.CommandText = @"INSERT INTO blogs_communities (blog_id, community_id) VALUES (@thisBlogId, @thisCommunityId);";
+        MySqlParameter thisBlogId = new MySqlParameter("@thisBlogId", _id);
+        MySqlParameter thisCommunityId = new MySqlParameter("@thisCommunityId", communityId);
+        cmd.Parameters.Add(thisBlogId);
+        cmd.Parameters.Add(thisCommunityId);
+        cmd.ExecuteNonQuery();
+        conn.Close();
+        if(conn != null)
+        {
+          conn.Dispose();
+        }
+      }
+
+      public void RemoveCommunity(int communityId)
+      {
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
+        var cmd = conn.CreateCommand() as MySqlCommand;
+        cmd.CommandText = @"DELETE FROM blogs_communities WHERE blog_id = @thisBlogId AND community_id = @thisCommunityId;";
+        MySqlParameter thisBlogId = new MySqlParameter("@thisBlogId", _id);
+        MySqlParameter thisCommunityId = new MySqlParameter("@thisCommunityId", communityId);
+        cmd.Parameters.Add(thisBlogId);
+        cmd.Parameters.Add(thisCommunityId);
+        cmd.ExecuteNonQuery();
+        conn.Close();
+        if(conn != null)
+        {
+          conn.Dispose();
         }
       }
   }
