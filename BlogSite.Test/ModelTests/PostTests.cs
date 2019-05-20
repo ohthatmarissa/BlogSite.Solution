@@ -83,10 +83,13 @@ namespace BlogSite.Tests
     [TestMethod]
     public void Find_ReturnsCorrectPostFromDatabase_Post()
     {
-
+      Post newPost = new Post("", "", 0);
+      newPost.Save();
+      Post foundPost = Post.Find(newPost.GetId());
+      Assert.AreEqual(newPost, foundPost);
     }
-    public void Delete ()
-
-  }
+  //   public void Delete ()
+  //
+   }
 
 }
