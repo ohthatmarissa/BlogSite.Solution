@@ -65,7 +65,7 @@ namespace BlogSite.Models
             {
                 return false;
             }
-        else
+            else
             {
                 Post newPost = (Post) otherPost;
                 bool idEquality = this.GetId() == newPost.GetId();
@@ -73,7 +73,7 @@ namespace BlogSite.Models
                 bool contentEquality = this.GetContent() == newPost.GetContent();
                 bool dateEquality = this.GetDate() == newPost.GetDate();
                 bool blogIdEquality = this.GetBlogId() == newPost.GetBlogId();
-                return (idEquality && titleEquality && contentEquality && dateEquality&& blogIdEquality);
+                return (idEquality && titleEquality && contentEquality && dateEquality && blogIdEquality);
             }
         }
 

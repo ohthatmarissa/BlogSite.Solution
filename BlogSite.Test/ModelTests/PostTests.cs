@@ -70,6 +70,8 @@ namespace BlogSite.Tests
       newPost.Save();
       List <Post> result = Post.GetAll();
       List<Post> testList = new List <Post>{newPost};
+      Console.WriteLine(result[0].GetDate()+"hi");
+      Console.WriteLine(testList[0].GetDate()+"hi2");
       CollectionAssert.AreEqual(result, testList);
     }
     [TestMethod]
@@ -77,8 +79,10 @@ namespace BlogSite.Tests
     {
       Post newPost = new Post("", "", 0);
       Post newPost2 = new Post("", "", 0);
-      Assert.AreEqual(newPost, newPost2);
+      Console.WriteLine(newPost.GetDate());
+      Console.WriteLine(newPost2.GetDate());
 
+      Assert.AreEqual(newPost, newPost2);
     }
     [TestMethod]
     public void Find_ReturnsCorrectPostFromDatabase_Post()
@@ -94,8 +98,9 @@ namespace BlogSite.Tests
       newPost.Save();
       Post newPost2 = new Post("", "", 0);
       newPost2.Save();
-      newPost.Delete()
-
+      newPost.Delete();
+      List<Post> result = Post.GetAll();
+      Assert.AreEqual(newPost2, result[0]);
     }
 
    }
