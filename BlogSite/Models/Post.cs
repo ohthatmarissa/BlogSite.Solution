@@ -11,7 +11,7 @@ namespace BlogSite.Models
     private string _title;
     private string _content;
     private DateTime _date;
-    
+
 
     public Post(string postTitle, string postContent, int postBlogId, int id = 0)
     {
@@ -65,7 +65,7 @@ namespace BlogSite.Models
             {
                 return false;
             }
-        else
+            else
             {
                 Post newPost = (Post) otherPost;
                 bool idEquality = this.GetId() == newPost.GetId();
@@ -76,7 +76,7 @@ namespace BlogSite.Models
             }
         }
 
-    
+
     public void Dispose()
     {
       Blog.ClearAll();
@@ -127,7 +127,7 @@ namespace BlogSite.Models
         blogId.ParameterName = "@blogId";
         blogId.Value = this._blogId;
         cmd.Parameters.Add(blogId);
-        
+
         cmd.ExecuteNonQuery();
         _id = (int) cmd.LastInsertedId;
         conn.Close();
@@ -155,7 +155,7 @@ namespace BlogSite.Models
         string postTitle = rdr.GetString(2);
         string postContent = rdr.GetString(3);
         DateTime postDate = rdr.GetDateTime(4);
-        
+
         Post newPost = new Post(postTitle, postContent, postBlogId, postId);
         newPost.SetDate(postDate);
         allPosts.Add(newPost);
@@ -195,7 +195,7 @@ namespace BlogSite.Models
         }
         Post foundPost = new Post(postTitle, postContent, postBlogId, postId);
         foundPost.SetDate(postDate);
-        
+
         conn.Close();
         if (conn != null)
             {
