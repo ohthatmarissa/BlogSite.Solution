@@ -29,12 +29,21 @@ namespace BlogSite.Controllers
         if(password1 == password2)
         {
           Blog newBlog = new Blog(username, password1);
-          return RedirectToAction("Edit", newBlog);
+          newBlog.Save();
+          Blog.Login(username, password1);
+          return View("Edit", newBlog);
         }
         else
         {
           return View("New");
         }
+      }
+
+      [HttpGet("/blogs/{id}/edit")]
+      public ActionResult Edit(int id)
+      {
+        Blog foundBlog = Blog.FindById(id);
+        return View(foundBlog);
       }
   }
 }
