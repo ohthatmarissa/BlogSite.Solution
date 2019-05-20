@@ -2,10 +2,10 @@
 @using System.Collections.Generic;
 @{Layout = "_Layout";}
 
-<form action="/blogs/update" method="post">
+<form action="/blogs/@Model.GetId()/update" method="post">
     <label>Blog Title:</label>
     <input type="text" name="title" value="@Model.GetTitle()" required>
     <label>About this blog:</label>
-    <input password type="password" name="password1" value="@Model.GetAbout()" required>
+    <input password type="text" name="about" value="@Model.GetAbout()" required>
     <button type="submit">Save</button>
 </form>
