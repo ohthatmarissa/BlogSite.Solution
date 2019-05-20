@@ -232,6 +232,7 @@ namespace BlogSite.Models
 
         while(blogQueryRdr.Read())
         {
+
           int blogId = blogQueryRdr.GetInt32(0);
           string blogTitle = blogQueryRdr.GetString(1);
           string blogAbout = blogQueryRdr.GetString(2);
@@ -240,8 +241,8 @@ namespace BlogSite.Models
           Blog newBlog = new Blog(blogUsername, blogPassword, blogId);
           newBlog.SetTitle(blogTitle);
           newBlog.SetAbout(blogAbout);
-          blogs.Add(newBlog);
-      }
+          blogs.Add (newBlog);
+        }
         conn.Close();
         if (conn != null)
         {
