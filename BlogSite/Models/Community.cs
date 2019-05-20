@@ -168,7 +168,7 @@ namespace BlogSite.Models
     {
         MySqlConnection conn = DB.Connection();
         conn.Open();
-        MySqlCommand cmd = new MySqlCommand( "DELETE FROM communities WHERE id = @CommunityId;", conn);
+        MySqlCommand cmd = new MySqlCommand( "DELETE FROM communities WHERE id = @CommunityId; DELETE FROM blogs_communities WHERE id = @CommunityId", conn);
         MySqlParameter communityIdParameter = new MySqlParameter();
         communityIdParameter.ParameterName = "@CommunityId";
         communityIdParameter.Value = this.GetId();
@@ -211,6 +211,68 @@ namespace BlogSite.Models
                 conn.Dispose();
             }
         }
+
+
+        public List<Blog> GetBlogs()
+    {
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
+        var cmd = conn.CreateCommand() as MySqlCommand;
+        cmd.CommandText = @"SELECT blogs.* FROM 
+            communities JOIN blogs_communities ON (communities.id = blogs_communities.community_id)
+                    JOIN blogs ON (blogs_communities.blog_id = blogs.id)
+                    WHERE blogs.id = @CommunityId;";
+        MySqlParameter communityIdParameter = new MySqlParameter();
+        communityIdParameter.ParameterName = "@CommunityId";
+        communityIdParameter.Value = _id;
+        cmd.Parameters.Add(communityIdParameter);
+        MySqlDataReader blogQueryRdr = cmd.ExecuteReader() as MySqlDataReader;
+        List<Blog> blogs = new List<Blog> {
+        };
+
+        while(blogQueryRdr.Read())
+        {
+          int blogId = blogQueryRdr.GetInt32(0);
+          string blogTitle = blogQueryRdr.GetString(1);
+          string blogAbout = blogQueryRdr.GetString(2);
+          string blogUsername = blogQueryRdr.GetString(3);
+          string blogPassword = blogQueryRdr.GetString(4);
+          Blog newBlog = new Blog(blogUsername, blogPassword, blogId);
+          newBlog.SetTitle(blogTitle);
+          newBlog.SetAbout(blogAbout);
+          blogs.Add(newBlog);
+      }
+        conn.Close();
+        if (conn != null)
+        {
+            conn.Dispose();
+        }
+        return blogs;
+    }
+
+
+    public void AddBlog (Blog newBlog)
+    {
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
+        var cmd = conn.CreateCommand() as MySqlCommand;
+        cmd.CommandText = @"INSERT INTO blogs_communities (community_id, blog_id) VALUES (@CommunityId, @BlogId);";
+        MySqlParameter community_id = new MySqlParameter();
+        community_id.ParameterName = "@CommunityId";
+        community_id.Value = _id;
+        cmd.Parameters.Add(community_id);
+
+        MySqlParameter blog_id = new MySqlParameter();
+        blog_id.ParameterName = "@BlogId";
+        blog_id.Value = newBlog.GetId();
+        cmd.Parameters.Add(blog_id);
+        cmd.ExecuteNonQuery();
+        conn.Close();
+        if(conn != null)
+        {
+            conn.Dispose();
+        }
+    }
 
 
   }
