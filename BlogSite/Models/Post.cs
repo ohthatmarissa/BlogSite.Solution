@@ -71,8 +71,8 @@ namespace BlogSite.Models
                 bool idEquality = this.GetId() == newPost.GetId();
                 bool titleEquality = this.GetTitle() == newPost.GetTitle();
                 bool contentEquality = this.GetContent() == newPost.GetContent();
-                bool dateEquality = this.GetDate() == newPost.GetDate();
-                return (idEquality && titleEquality && contentEquality && dateEquality);
+                bool blogIdEquality = this.GetBlogId() == newPost.GetBlogId();
+                return (idEquality && titleEquality && contentEquality && blogIdEquality);
             }
         }
 
@@ -106,7 +106,7 @@ namespace BlogSite.Models
         conn.Open();
 
         var cmd = conn.CreateCommand() as MySqlCommand;
-        cmd.CommandText = @"INSERT INTO posts (title, content, date, blogId) VALUES (@title, @content, @date, @blogId);";
+        cmd.CommandText = @"INSERT INTO posts (title, content, date, blog_id) VALUES (@title, @content, @date, @blogId);";
 
         MySqlParameter title = new MySqlParameter();
         title.ParameterName = "@title";

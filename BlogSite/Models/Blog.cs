@@ -9,11 +9,8 @@ namespace BlogSite.Models
     private int _id;
     private string _title;
     private string _about;
-
     private string _username;
-
     private string _password;
-    
 
     public Blog(string username, string password, int id = 0) 
     {
