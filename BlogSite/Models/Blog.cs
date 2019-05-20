@@ -8,14 +8,30 @@ namespace BlogSite.Models
   {
     private int _id;
     private string _title;
-    private string _description;
+    private string _about;
+
+    private string _username;
+
+    private string _password;
     
 
-    public Blog(string blogTitle, string blogDescription, int id = 0) 
+    public Blog(string username, string password, int id = 0) 
     {
-      _title = blogTitle;
-      _description = blogDescription;
+      _username = username;
+      _password = password;
+      _title = "My Awesome Blog";
+      _about = "";
       _id = id;
+    }
+
+    public string GetUsername()
+    {
+      return _username;
+    }
+
+    public string GetPassword()
+    {
+      return _password;
     }
 
     public string GetTitle()
@@ -30,9 +46,9 @@ namespace BlogSite.Models
     }
 
 
-    public string GetDescription()
+    public string GetAbout()
     {
-      return _description;
+      return _about;
     }
 
 
@@ -53,8 +69,10 @@ namespace BlogSite.Models
                 Blog newBlog = (Blog) otherBlog;
                 bool idEquality = this.GetId() == newBlog.GetId();
                 bool titleEquality = this.GetTitle() == newBlog.GetTitle();
-                bool descriptionEquality = this.GetDescription() == newBlog.GetDescription();
-                return (idEquality && titleEquality && descriptionEquality);
+                bool aboutEquality = this.GetAbout() == newBlog.GetAbout();
+                bool usernameEquality = this.GetUsername() == newBlog.GetUsername();
+                bool passwordEquality = this.GetPassword() == newBlog.GetPassword();
+                return (idEquality && titleEquality && aboutEquality && usernameEquality && passwordEquality);
             }
         }
 
@@ -72,7 +90,7 @@ namespace BlogSite.Models
         conn.Open();
 
         var cmd = conn.CreateCommand() as MySqlCommand;
-        cmd.CommandText = @"INSERT INTO blogs (title, description) VALUES (@title, @description);";
+        cmd.CommandText = @"INSERT INTO blogs (title, about) VALUES (@title, @description);";
 
         MySqlParameter title = new MySqlParameter();
         title.ParameterName = "@title";
