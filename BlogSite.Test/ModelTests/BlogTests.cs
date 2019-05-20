@@ -22,40 +22,40 @@ namespace BlogSite.Tests
     [TestMethod]
     public void GetUserName_GetsNameOfBlogUser_String()
     {
-      string username =
+      string username = "username";
       Blog newBlog = new Blog(username, "");
-      Assert.AreEqual(username, newBlog.GetUserName());
+      Assert.AreEqual(username, newBlog.GetUsername());
     }
    [TestMethod]
    public void GetPassword()
    {
-
+     string password = "password";
+     Blog newBlog = new Blog ("", password);
+     Assert.AreEqual(password, newBlog.GetPassword());
    }
    [TestMethod]
    public void GetTitle()
    {
-
-   }
-   [TestMethod]
-   public void SetTitle()
-   {
-
+     string title = "title";
+     Blog newBlog = new Blog ("", "");
+     newBlog.SetTitle(title);
+     Assert.AreEqual(title, newBlog.GetTitle());
    }
    [TestMethod]
    public void GetId()
    {
-
+     Blog newBlog = new Blog ("", "");
+     Assert.AreEqual(0, newBlog.GetId());
    }
    [TestMethod]
    public void GetAbout()
    {
-
+     string about = "about";
+     Blog newBlog = new Blog ("", "");
+     newBlog.SetAbout(about);
+     Assert.AreEqual(about, newBlog.GetAbout());
    }
-   [TestMethod]
-   public void SetAbout()
-   {
 
-   }
 
 
 
