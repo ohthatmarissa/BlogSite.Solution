@@ -213,39 +213,42 @@ namespace BlogSite.Models
         }
 
 
-    //     public List<Blog> GetBlogs()
-    // {
-    //     MySqlConnection conn = DB.Connection();
-    //     conn.Open();
-    //     var cmd = conn.CreateCommand() as MySqlCommand;
-    //     cmd.CommandText = @"SELECT blogs.* FROM 
-    //         communities JOIN blogs_communities ON (communities.id = blogs_communities.commynity_id)
-    //                 JOIN blogs ON (blogs_communities.blog_id = blogs.id)
-    //                 WHERE blogs.id = @CommunityId;";
-    //     MySqlParameter communityIdParameter = new MySqlParameter();
-    //     communityIdParameter.ParameterName = "@CommunityId";
-    //     communityIdParameter.Value = _id;
-    //     cmd.Parameters.Add(communityIdParameter);
-    //     MySqlDataReader blogQueryRdr = cmd.ExecuteReader() as MySqlDataReader;
-    //     List<Blog> blogs = new List<Blog> {
-    //     };
+        public List<Blog> GetBlogs()
+    {
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
+        var cmd = conn.CreateCommand() as MySqlCommand;
+        cmd.CommandText = @"SELECT blogs.* FROM 
+            communities JOIN blogs_communities ON (communities.id = blogs_communities.community_id)
+                    JOIN blogs ON (blogs_communities.blog_id = blogs.id)
+                    WHERE blogs.id = @CommunityId;";
+        MySqlParameter communityIdParameter = new MySqlParameter();
+        communityIdParameter.ParameterName = "@CommunityId";
+        communityIdParameter.Value = _id;
+        cmd.Parameters.Add(communityIdParameter);
+        MySqlDataReader blogQueryRdr = cmd.ExecuteReader() as MySqlDataReader;
+        List<Blog> blogs = new List<Blog> {
+        };
 
-    //     while(blogQueryRdr.Read())
-    //     {
-    //         int thisStylistId = stylistQueryRdr.GetInt32(0);
-    //         string stylistName = stylistQueryRdr.GetString(1);
-    //         string stylistInformation = stylistQueryRdr.GetString(2);
-    //         Stylist newStylist = new Stylist (stylistName, stylistInformation, thisStylistId);
-    //         stylists.Add (newStylist);
-    //     }
-
-    //     conn.Close();
-    //     if (conn != null)
-    //     {
-    //         conn.Dispose();
-    //     }
-    //     return stylists;
-    // }
+        while(blogQueryRdr.Read())
+        {
+          int blogId = blogQueryRdr.GetInt32(0);
+          string blogTitle = blogQueryRdr.GetString(1);
+          string blogAbout = blogQueryRdr.GetString(2);
+          string blogUsername = blogQueryRdr.GetString(3);
+          string blogPassword = blogQueryRdr.GetString(4);
+          Blog newBlog = new Blog(blogUsername, blogPassword, blogId);
+          newBlog.SetTitle(blogTitle);
+          newBlog.SetAbout(blogAbout);
+          blogs.Add(newBlog);
+      }
+        conn.Close();
+        if (conn != null)
+        {
+            conn.Dispose();
+        }
+        return blogs;
+    }
 
 
   }

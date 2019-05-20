@@ -9,11 +9,8 @@ namespace BlogSite.Models
     private int _id;
     private string _title;
     private string _about;
-
     private string _username;
-
     private string _password;
-    
 
     public Blog(string username, string password, int id = 0) 
     {
@@ -192,7 +189,7 @@ namespace BlogSite.Models
       var cmd = conn.CreateCommand() as MySqlCommand;
       cmd.CommandText = @"SELECT * FROM blogs WHERE username = @searchUsername;";
       MySqlParameter searchUsername = new MySqlParameter("@searchUsername", username);
-      cmd.Parameters.Add(searchId);
+      cmd.Parameters.Add(searchUsername);
       var rdr = cmd.ExecuteReader() as MySqlDataReader;
       int blogId = 0;
       string blogTitle = "";
