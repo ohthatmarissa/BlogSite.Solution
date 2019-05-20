@@ -1,0 +1,14 @@
+@using BlogSite.Models;
+@using System.Collections.Generic;
+@{Layout = "_Layout";}
+
+<form action="/blogs/create" method="post">
+    <label>Choose a username:</label>
+    <input type="text" name="username" required>
+    <label>Enter a password:</label>
+    <input password type="password" name="password1" required>
+    <label>Re-enter password:</label>
+    <input type="password" name="password2" required>
+    <button type="submit">Register</button>
+</form>
+
