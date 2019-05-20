@@ -29,7 +29,7 @@ namespace BlogSite.Models
       return _content;
     }
 
-    public int GetblogId()
+    public int GetBlogId()
     {
       return _blogId;
     }
