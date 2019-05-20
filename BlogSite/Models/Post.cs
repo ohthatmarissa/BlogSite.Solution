@@ -253,5 +253,35 @@ namespace BlogSite.Models
             }
         }
 
+
+        public static List<Post> PostSearch(string searchWord)
+        {
+        List<Post> allPosts = new List<Post> { };
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
+        MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+        cmd.CommandText = @"SELECT id, blog_id, title, content, date FROM posts WHERE searchWord LIKE '%searchWord%';";
+        MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+        while(rdr.Read())
+        {
+            int postId = rdr.GetInt32(0);
+            int postBlogId = rdr.GetInt32(1);
+            string postTitle = rdr.GetString(2);
+            string postContent = rdr.GetString(3);
+            DateTime postDate = rdr.GetDateTime(4);
+
+            Post searchPost = new Post(postTitle, postContent, postBlogId, postId);
+            searchPost.SetDate(postDate);
+            allPosts.Add(searchPost);
+        }
+        conn.Close();
+        if (conn != null)
+            {
+                conn.Dispose();
+            }
+        return allPosts;
+        }
+
+
   }
 }
