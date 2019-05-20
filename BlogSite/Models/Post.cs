@@ -91,7 +91,7 @@ namespace BlogSite.Models
         conn.Open();
 
         var cmd = conn.CreateCommand() as MySqlCommand;
-        cmd.CommandText = @"INSERT INTO posts (title, content, blogId) VALUES (@title, @content, @blogId);";
+        cmd.CommandText = @"INSERT INTO posts (title, content, blog_id) VALUES (@title, @content, @blogId);";
 
         MySqlParameter title = new MySqlParameter();
         title.ParameterName = "@title";

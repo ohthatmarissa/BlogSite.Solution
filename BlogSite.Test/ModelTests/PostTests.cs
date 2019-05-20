@@ -7,8 +7,13 @@ using MySql.Data.MySqlClient;
 namespace BlogSite.Tests
 {
   [TestClass]
-  public class PostTest
+  public class PostTest : IDisposable
   {
+    public void Dispose()
+    {
+      Post.ClearAll();
+    }
+
     public PostTest()
     {
       DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=blog_site_test;";
@@ -46,6 +51,39 @@ namespace BlogSite.Tests
       Post newPost = new Post("", "", 0);
       Assert.AreEqual(0, newPost.GetId());
     }
+    //Set title
+    //Set Content
+    //Set blogId
+
+    [TestMethod]
+    public void GetAll_ReturnsEmptyPostList_PostList()
+    {
+      List<Post> allPosts = new List <Post>{};
+      List <Post> result = Post.GetAll();
+      CollectionAssert.AreEqual(allPosts, result);
+    }
+
+    [TestMethod]
+    public void Save_SavesPostToDataBase_PostList()
+    {
+      Post newPost = new Post("", "", 0);
+      newPost.Save();
+      List <Post> result = Post.GetAll();
+      List<Post> testList = new List <Post>{newPost};
+      CollectionAssert.AreEqual(result, testList);
+
+    }
+    // [TestMethod]
+    // public void Equals_ReturnsTrueIfPostsAreSame_True()
+    // {
+    //
+    // }
+    // [TestMethod]
+    // public void Find_ReturnsCorrectPostFromDatabase_Post()
+    // {
+    //
+    // }
+
   }
 
 }
