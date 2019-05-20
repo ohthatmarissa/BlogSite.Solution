@@ -88,8 +88,16 @@ namespace BlogSite.Tests
       Post foundPost = Post.Find(newPost.GetId());
       Assert.AreEqual(newPost, foundPost);
     }
-  //   public void Delete ()
-  //
+    public void Delete_DeletesSpecificPost_True()
+    {
+      Post newPost = new Post("", "", 0);
+      newPost.Save();
+      Post newPost2 = new Post("", "", 0);
+      newPost2.Save();
+      newPost.Delete()
+
+    }
+
    }
 
 }
