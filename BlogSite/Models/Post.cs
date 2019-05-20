@@ -71,9 +71,8 @@ namespace BlogSite.Models
                 bool idEquality = this.GetId() == newPost.GetId();
                 bool titleEquality = this.GetTitle() == newPost.GetTitle();
                 bool contentEquality = this.GetContent() == newPost.GetContent();
-                bool dateEquality = this.GetDate() == newPost.GetDate();
                 bool blogIdEquality = this.GetBlogId() == newPost.GetBlogId();
-                return (idEquality && titleEquality && contentEquality && dateEquality&& blogIdEquality);
+                return (idEquality && titleEquality && contentEquality && blogIdEquality);
             }
         }
 
