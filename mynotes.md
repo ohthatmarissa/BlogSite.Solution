@@ -1,7 +1,0 @@
-- Create All initial folders (Models, modeltests, views etc)
-- Check models for all parameters
-- Create test titles 
--
--
--
--
