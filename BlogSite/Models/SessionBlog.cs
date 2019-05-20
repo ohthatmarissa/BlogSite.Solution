@@ -12,9 +12,10 @@ namespace BlogSite.Models
         public SessionBlog(int userId, int id = 0)
         {
             _userId = userId;
+            _id = id;
         }
 
-        public int GetId()
+        public static int GetId()
         {
             MySqlConnection conn = DB.Connection();
             conn.Open();
