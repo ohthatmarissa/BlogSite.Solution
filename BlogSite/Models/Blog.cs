@@ -12,7 +12,7 @@ namespace BlogSite.Models
     private string _username;
     private string _password;
 
-    public Blog(string username, string password, int id = 0) 
+    public Blog(string username, string password, int id = 0)
     {
       _username = username;
       _password = password;
