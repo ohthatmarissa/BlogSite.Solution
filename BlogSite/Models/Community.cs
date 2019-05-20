@@ -251,5 +251,29 @@ namespace BlogSite.Models
     }
 
 
+    public void AddBlog (Blog newBlog)
+    {
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
+        var cmd = conn.CreateCommand() as MySqlCommand;
+        cmd.CommandText = @"INSERT INTO blogs_communities (community_id, blog_id) VALUES (@CommunityId, @BlogId);";
+        MySqlParameter community_id = new MySqlParameter();
+        community_id.ParameterName = "@CommunityId";
+        community_id.Value = _id;
+        cmd.Parameters.Add(community_id);
+
+        MySqlParameter blog_id = new MySqlParameter();
+        blog_id.ParameterName = "@BlogId";
+        blog_id.Value = newBlog.GetId();
+        cmd.Parameters.Add(blog_id);
+        cmd.ExecuteNonQuery();
+        conn.Close();
+        if(conn != null)
+        {
+            conn.Dispose();
+        }
+    }
+
+
   }
 }
