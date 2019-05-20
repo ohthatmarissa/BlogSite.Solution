@@ -10,14 +10,11 @@ namespace BlogSite.Models
     private int _blogId;
     private string _title;
     private string _content;
-    private DateTime _date;
-    
 
-    public Post(string postTitle, string postContent, DateTime postDate, int postBlogId, int id = 0)
+    public Post(string postTitle, string postContent, int postBlogId, int id = 0)
     {
       _title = postTitle;
       _content = postContent;
-      _date = postDate;
       _blogId = postBlogId;
       _id = id;
     }
@@ -31,12 +28,6 @@ namespace BlogSite.Models
     {
       return _content;
     }
-
-    public DateTime GetDate()
-    {
-      return _date;
-    }
-
 
     public int GetblogId()
     {
@@ -66,12 +57,11 @@ namespace BlogSite.Models
                 bool idEquality = this.GetId() == newPost.GetId();
                 bool titleEquality = this.GetTitle() == newPost.GetTitle();
                 bool contentEquality = this.GetContent() == newPost.GetContent();
-                bool dateEquality = this.GetDate() == newPost.GetDate();
-                return (idEquality && titleEquality && contentEquality && dateEquality);
+                return (idEquality && titleEquality && contentEquality);
             }
         }
 
-    
+
     public void Dispose()
     {
       Blog.ClearAll();
@@ -101,7 +91,7 @@ namespace BlogSite.Models
         conn.Open();
 
         var cmd = conn.CreateCommand() as MySqlCommand;
-        cmd.CommandText = @"INSERT INTO posts (title, content, date, blogId) VALUES (@title, @content, @date, @blogId);";
+        cmd.CommandText = @"INSERT INTO posts (title, content, blogId) VALUES (@title, @content, @blogId);";
 
         MySqlParameter title = new MySqlParameter();
         title.ParameterName = "@title";
@@ -113,16 +103,11 @@ namespace BlogSite.Models
         content.Value = this._content;
         cmd.Parameters.Add(content);
 
-        MySqlParameter date = new MySqlParameter();
-        date.ParameterName = "@date";
-        date.Value = this._date;
-        cmd.Parameters.Add(date);
-
         MySqlParameter blogId = new MySqlParameter();
         blogId.ParameterName = "@blogId";
         blogId.Value = this._blogId;
         cmd.Parameters.Add(blogId);
-        
+
         cmd.ExecuteNonQuery();
         _id = (int) cmd.LastInsertedId;
         conn.Close();
@@ -130,7 +115,6 @@ namespace BlogSite.Models
             {
                 conn.Dispose();
             }
-
     }
 
 
@@ -141,7 +125,7 @@ namespace BlogSite.Models
     MySqlConnection conn = DB.Connection();
     conn.Open();
     MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-    cmd.CommandText = @"SELECT id, blog_id, title, content, date FROM posts;";
+    cmd.CommandText = @"SELECT id, blog_id, title, content FROM posts;";
     MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
     while(rdr.Read())
     {
@@ -149,9 +133,8 @@ namespace BlogSite.Models
         int postBlogId = rdr.GetInt32(1);
         string postTitle = rdr.GetString(2);
         string postContent = rdr.GetString(3);
-        DateTime postDate = rdr.GetDateTime(4);
-        
-        Post newPost = new Post(postTitle, postContent, postDate, postBlogId, postId);
+
+        Post newPost = new Post(postTitle, postContent, postBlogId, postId);
         allPosts.Add(newPost);
     }
     conn.Close();
@@ -178,16 +161,14 @@ namespace BlogSite.Models
         int postBlogId = 0;
         string postTitle = "";
         string postContent = "";
-        DateTime postDate = new DateTime();
         while(rdr.Read())
         {
             postId = rdr.GetInt32(0);
             postBlogId = rdr.GetInt32(1);
             postTitle = rdr.GetString(2);
             postContent = rdr.GetString(3);
-            postDate = rdr.GetDateTime(4);
         }
-        Post foundPost = new Post(postTitle, postContent, postDate, postBlogId, postId);
+        Post foundPost = new Post(postTitle, postContent, postBlogId, postId);
         conn.Close();
         if (conn != null)
             {
@@ -215,12 +196,12 @@ namespace BlogSite.Models
         }
 
 
-        public void Edit(string newTitle, string newContent, DateTime newDate)
+        public void Edit(string newTitle, string newContent)
         {
         MySqlConnection conn = DB.Connection();
         conn.Open();
         var cmd = conn.CreateCommand() as MySqlCommand;
-        cmd.CommandText = @"UPDATE posts SET title = @newTitle, content = @newContent, date = @newDate WHERE id = (@searchId);";
+        cmd.CommandText = @"UPDATE posts SET title = @newTitle, content = @newContent WHERE id = (@searchId);";
         MySqlParameter searchId = new MySqlParameter();
         searchId.ParameterName = "@searchId";
         searchId.Value = _id;
@@ -235,16 +216,10 @@ namespace BlogSite.Models
         content.ParameterName = "@newContent";
         content.Value = newContent;
         cmd.Parameters.Add(content);
-        
-        MySqlParameter date = new MySqlParameter();
-        date.ParameterName = "@newDate";
-        date.Value = newDate;
-        cmd.Parameters.Add(date);
-        cmd.ExecuteNonQuery();
+
 
         _title = newTitle;
         _content = newContent;
-        _date = newDate;
         conn.Close();
         if (conn != null)
             {
