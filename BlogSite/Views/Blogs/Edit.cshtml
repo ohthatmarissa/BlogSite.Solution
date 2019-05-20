@@ -1,0 +1,11 @@
+@using BlogSite.Models;
+@using System.Collections.Generic;
+@{Layout = "_Layout";}
+
+<form action="/blogs/update" method="post">
+    <label>Blog Title:</label>
+    <input type="text" name="title" value="@Model.GetTitle()" required>
+    <label>About this blog:</label>
+    <input password type="password" name="password1" value="@Model.GetAbout()" required>
+    <button type="submit">Save</button>
+</form>
