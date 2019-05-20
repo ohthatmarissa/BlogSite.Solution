@@ -71,18 +71,21 @@ namespace BlogSite.Tests
       List <Post> result = Post.GetAll();
       List<Post> testList = new List <Post>{newPost};
       CollectionAssert.AreEqual(result, testList);
+    }
+    [TestMethod]
+    public void Equals_ReturnsTrueIfPostsAreSame_True()
+    {
+      Post newPost = new Post("", "", 0);
+      Post newPost2 = new Post("", "", 0);
+      Assert.AreEqual(newPost, newPost2);
 
     }
-    // [TestMethod]
-    // public void Equals_ReturnsTrueIfPostsAreSame_True()
-    // {
-    //
-    // }
-    // [TestMethod]
-    // public void Find_ReturnsCorrectPostFromDatabase_Post()
-    // {
-    //
-    // }
+    [TestMethod]
+    public void Find_ReturnsCorrectPostFromDatabase_Post()
+    {
+
+    }
+    public void Delete ()
 
   }
 
