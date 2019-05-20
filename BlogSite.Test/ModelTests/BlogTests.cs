@@ -84,11 +84,14 @@ namespace BlogSite.Tests
      Blog foundBlog = Blog.FindById(newBlog.GetId());
      Assert.AreEqual(newBlog, foundBlog);
    }
-   // [TestMethod]
-   // public void FindByUsername()
-   // {
-   //
-   // }
+   [TestMethod]
+   public void FindByUsername_FindBlogFromDatabaseBlog()
+   {
+     Blog newBlog = new Blog("", "");
+     newBlog.Save();
+     Blog foundBlog = Blog.FindByUsername(newBlog.GetUsername());
+     Assert.AreEqual(newBlog, foundBlog);
+   }
    // [TestMethod]
    // public void Delete()
    // {
