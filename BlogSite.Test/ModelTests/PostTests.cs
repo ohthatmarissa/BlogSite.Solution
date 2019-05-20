@@ -51,9 +51,6 @@ namespace BlogSite.Tests
       Post newPost = new Post("", "", 0);
       Assert.AreEqual(0, newPost.GetId());
     }
-    //Set title
-    //Set Content
-    //Set blogId
 
     [TestMethod]
     public void GetAll_ReturnsEmptyPostList_PostList()
@@ -70,8 +67,6 @@ namespace BlogSite.Tests
       newPost.Save();
       List <Post> result = Post.GetAll();
       List<Post> testList = new List <Post>{newPost};
-      Console.WriteLine(result[0].GetDate()+"hi");
-      Console.WriteLine(testList[0].GetDate()+"hi2");
       CollectionAssert.AreEqual(result, testList);
     }
     [TestMethod]
