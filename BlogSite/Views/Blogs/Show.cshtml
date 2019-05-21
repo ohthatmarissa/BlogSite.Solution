@@ -1,0 +1,10 @@
+@using BlogSite.Models;
+@{Layout = "_Layout";}
+
+<h2>@Model.GetTitle()</h2>
+<h3>About<h3>
+<p>@Model.GetAbout()</p>
+@if(Model.GetPosts().Count < 1)
+{
+<h3>There are no posts to display. <a href="blogs/@Model.GetId()/posts/new">Write one!</a></h3>
+}
