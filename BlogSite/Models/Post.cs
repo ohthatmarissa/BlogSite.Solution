@@ -10,7 +10,7 @@ namespace BlogSite.Models
     private int _blogId;
     private string _title;
     private string _content;
-    private DateTime _date;
+    private DateTime _date;   
 
 
     public Post(string postTitle, string postContent, int postBlogId, int id = 0)

@@ -87,6 +87,7 @@ namespace BlogSite.Tests
       Post foundPost = Post.Find(newPost.GetId());
       Assert.AreEqual(newPost, foundPost);
     }
+    [TestMethod]
     public void Delete_DeletesSpecificPost_True()
     {
       Post newPost = new Post("", "", 0);
@@ -96,6 +97,20 @@ namespace BlogSite.Tests
       newPost.Delete();
       List<Post> result = Post.GetAll();
       Assert.AreEqual(newPost2, result[0]);
+    }
+    [TestMethod]
+    public void PostSearch_SearchesForContentContainingSearchWord_Content()
+    {
+      Post newPost = new Post("", "", 0);
+      newPost.Save();
+      Post newPost2 = new Post("", "a", 1);
+      newPost2.Save();
+      List<Post> newList = new List <Post>{newPost2};
+      string searchWord = "a";
+      List <Post> result = Post.PostSearch("a");
+      Console.WriteLine(result.Count);
+      Console.WriteLine(newList.Count);
+      CollectionAssert.AreEqual(result, newList);
     }
 
    }
