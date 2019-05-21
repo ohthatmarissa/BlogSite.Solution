@@ -10,3 +10,17 @@ User blog
 
 Unregistered
 //- User has a profile page that they can fill out immediately upon registration and edit at anytime.
+
+
+-----
+
+
+Filler content
+-Three usernames
+-Three blog titles
+-Three about mes
+-3 posts per blog
+-5 communities with descriptions
+Email Danielle!
+-Guy who works @Mercedes Benz
+-Mercedes Benz internship!

@@ -1,2 +1,2 @@
--post tests
--blogtests once zach fixes it 
+-Communitytests
+-Finish blog tests!!!!
