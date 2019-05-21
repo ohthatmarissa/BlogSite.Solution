@@ -1,0 +1,24 @@
+@using BlogSite.Models;
+@using System.Collections.Generic;
+@{Layout = "_Layout";}
+
+<form action="/posts/search" method="post">
+    <label for="search"></label><br>
+    <input type="text" name="search" required autocomplete="off"/>
+    <input type="Submit"></button>
+</form>
+
+@if(Model.Count < 1)
+{
+    <p>Nothing to display!</p>
+}
+else
+
+{
+    <ul>
+    @foreach (var post in Model)
+    {
+      <li><a href="/posts/@post.GetId()"></a></li>
+    }
+  </ul>
+}

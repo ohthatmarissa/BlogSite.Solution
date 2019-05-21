@@ -10,11 +10,27 @@ namespace BlogSite.Controllers
   public class PostsController : Controller
   {
 
-      [HttpGet("/posts")]
-      public ActionResult Index()
-      {
-          List<Post> allPosts = Post.GetAll();
-          return View(allPosts);
-      }
+    [HttpGet("/posts")]
+    public ActionResult Index()
+    {
+        List<Post> allPosts = Post.GetAll();
+        return View(allPosts);
+    }
+
+    [HttpGet("/posts/search")]
+    public ActionResult Search()
+    {
+      List<Post> list = new List <Post> {};
+       return View(list);
+    }
+
+    [HttpPost("/posts/search")]
+    public ActionResult Search(string searchWord)
+    {
+      List<Post> seacrhResult = Post.PostSearch(searchWord);
+      return View(seacrhResult);
+    }
+
+
   }
 }
