@@ -27,8 +27,8 @@ namespace BlogSite.Controllers
     [HttpPost("/posts/search")]
     public ActionResult Search(string searchWord)
     {
-      List<Post> seacrhResult = Post.PostSearch(searchWord);
-      return View(seacrhResult);
+      List<Post> searchResult = Post.PostSearch(searchWord);
+      return View(searchResult);
     }
 
 

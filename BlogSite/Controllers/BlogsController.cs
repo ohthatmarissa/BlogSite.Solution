@@ -23,7 +23,7 @@ namespace BlogSite.Controllers
         return View();
       }
 
-      [HttpPost("/blogs/create")]
+      [HttpPost("/blogs/register")]
       public ActionResult Create(string username, string password1, string password2)
       {
         if(password1 == password2)
@@ -39,6 +39,14 @@ namespace BlogSite.Controllers
         }
       }
 
+      [HttpPost("/blogs/login")]
+      public ActionResult Update(string username, string password)
+      {
+        Blog thisBlog = Blog.FindByUsername(username);
+        Blog.Login(username, password);
+        return View("Show", thisBlog);
+      }
+
       [HttpGet("/blogs/{id}/edit")]
       public ActionResult Edit(int id)
       {
@@ -52,6 +60,13 @@ namespace BlogSite.Controllers
         Blog editBlog = Blog.FindById(id);
         editBlog.Edit(editBlog.GetUsername(), editBlog.GetPassword(), title, about);
         return RedirectToAction("Show", editBlog);
+      }
+
+      [HttpGet("/blogs/{id}")]
+      public ActionResult Show(int id)
+      {
+        Blog thisBlog = Blog.FindById(id);
+        return View(thisBlog);
       }
   }
 }
