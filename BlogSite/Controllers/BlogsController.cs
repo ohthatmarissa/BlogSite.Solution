@@ -20,6 +20,7 @@ namespace BlogSite.Controllers
       [HttpGet("/blogs/new")]
       public ActionResult New()
       {
+        ViewBag.Test = "Wow, it worked!";
         return View();
       }
 
