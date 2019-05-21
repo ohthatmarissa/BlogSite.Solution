@@ -20,7 +20,7 @@ namespace BlogSite.Models
             MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd= conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"SELECT user_id FROM session_blogs;";
+            cmd.CommandText = @"SELECT blog_id FROM session_blogs;";
             MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
             int currentId = 0;
             while(rdr.Read())
