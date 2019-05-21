@@ -36,7 +36,7 @@ footer {
 }
 
 /* ----Header---- */
-header {
+.index {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/top.jpg");
   background-size: cover;
   background-position: center;
@@ -47,7 +47,19 @@ header {
   margin-top: 80px;
   margin-right: 20px;
   float: right;
+}
 
+header {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/wood.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  text-align: center;
+}
+
+.text-box2 {
+  margin-top: 80px;
+  text-align: center;
 }
 
 h1 {

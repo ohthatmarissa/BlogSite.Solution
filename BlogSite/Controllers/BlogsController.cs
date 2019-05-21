@@ -20,6 +20,7 @@ namespace BlogSite.Controllers
       [HttpGet("/blogs/new")]
       public ActionResult New()
       {
+        ViewBag.Title = "Get Your Set Up On!";
         return View();
       }
 
