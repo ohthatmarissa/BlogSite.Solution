@@ -16,5 +16,13 @@ namespace BlogSite.Controllers
           List<Post> allPosts = Post.GetAll();
           return View(allPosts);
       }
+
+      [HttpPost("/posts/search")]
+      public ActionResult Show(string searchWord)
+      {
+          List<Post> seacrhResult = Post.PostSearch(searchWord);
+
+          return View(seacrhResult);
+      }
   }
 }
