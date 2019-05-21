@@ -8,17 +8,9 @@
     <input type="Submit"></button>
 </form>
 
-@if(Model.Count < 1)
-{
-    <p>Nothing to display!</p>
-}
-else
-
-{
     <ul>
-    @foreach (var post in Model)
+    @foreach (Post post in Model)
     {
-      <li><a href="/posts/@post.GetId()"></a></li>
+      <li><a href="/posts/@post.GetId()">@post.GetTitle()</a></li>
     }
   </ul>
-}

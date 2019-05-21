@@ -1,8 +1,10 @@
 @using BlogSite.Models;
 @using System.Collections.Generic;
 @{Layout = "_Layout";}
+@Html.Partial("Header")
 
-<form action="/blogs/create" method="post">
+<!-- signup form -->
+<form action="/blogs/register" method="post">
     <label>Choose a username:</label>
     <input type="text" name="username" required>
     <label>Enter a password:</label>
@@ -10,4 +12,14 @@
     <label>Re-enter password:</label>
     <input type="password" name="password2" required>
     <button type="submit">Register</button>
+</form>
+
+<!-- login form -->
+<form action="/blogs/login" method="post">
+    <label>Username:</label>
+    <input type="text" name="username" required>
+    <label>Enter a password:</label>
+    <input password type="password" name="password" required>
+    <label>Password:</label>
+    <button type="submit">Log In</button>
 </form>
