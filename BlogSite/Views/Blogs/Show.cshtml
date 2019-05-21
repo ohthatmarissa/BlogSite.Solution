@@ -1,10 +1,25 @@
 @using BlogSite.Models;
 @{Layout = "_Layout";}
+@Html.Partial("Header")
 
-<h2>@Model.GetTitle()</h2>
-<h3>About<h3>
+<h2>About</h2>
 <p>@Model.GetAbout()</p>
 @if(Model.GetPosts().Count < 1)
 {
-<h3>There are no posts to display. <a href="blogs/@Model.GetId()/posts/new">Write one!</a></h3>
+    <h3>There are no posts to display. <a href="blogs/@Model.GetId()/posts/new">Write one!</a></h3>
+}
+else
+{
+    @foreach(Post post in Model.GetPosts())
+    {
+        <h2>@post.GetTitle()</h2>
+        <p>Posted by @Model.GetUsername() on @post.GetDate().ToString("MM-dd-yyyy")</p>
+    }
+}
+
+@if(Model.IsLoggedIn())
+{
+    <form method="get" action='/blogs/@Model.GetId()/edit'>
+        <button type="submit">Edit</button>
+    </form>
 }
