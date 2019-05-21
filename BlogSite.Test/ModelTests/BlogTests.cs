@@ -12,6 +12,8 @@ namespace BlogSite.Tests
     public void Dispose()
     {
       Blog.ClearAll();
+      Post.ClearAll();
+      Community.ClearAll();
     }
     public BlogTest()
     {

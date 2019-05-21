@@ -9,7 +9,7 @@ namespace BlogSite.Models
     private int _id;
     private string _name;
     private string _description;
-    
+
 
     public Community(string communityName, string communityDescription, int id = 0)
     {
@@ -56,7 +56,7 @@ namespace BlogSite.Models
                 return (idEquality && nameEquality && descriptionEquality);
             }
         }
-    
+
 
     public void Dispose()
     {
@@ -218,7 +218,7 @@ namespace BlogSite.Models
         MySqlConnection conn = DB.Connection();
         conn.Open();
         var cmd = conn.CreateCommand() as MySqlCommand;
-        cmd.CommandText = @"SELECT blogs.* FROM 
+        cmd.CommandText = @"SELECT blogs.* FROM
             communities JOIN blogs_communities ON (communities.id = blogs_communities.community_id)
                     JOIN blogs ON (blogs_communities.blog_id = blogs.id)
                     WHERE blogs.id = @CommunityId;";
