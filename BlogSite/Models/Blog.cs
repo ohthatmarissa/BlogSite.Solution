@@ -307,6 +307,35 @@ namespace BlogSite.Models
         }
       }
 
+      public List<Post> GetPosts()
+      {
+        List<Post> allPosts = new List<Post>{};
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
+        var cmd = conn.CreateCommand() as MySqlCommand;
+        cmd.CommandText = @"SELECT * FROM posts WHERE blog_id = @thisId;";
+        MySqlParameter thisId = new MySqlParameter("@thisId", _id);
+        cmd.Parameters.Add(thisId);
+        MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+        while(rdr.Read())
+        {
+          int postId = rdr.GetInt32(0);
+          int blogId = rdr.GetInt32(1);
+          string postTitle = rdr.GetString(2);
+          string postContent = rdr.GetString(3);
+          DateTime postDate = rdr.GetDateTime(4);
+          Post thisPost = new Post(postTitle, postContent, blogId, postId);
+          thisPost.SetDate(postDate);
+          allPosts.Add(thisPost);
+        }
+        conn.Close();
+        if(conn != null)
+        {
+          conn.Dispose();
+        }
+        return allPosts;
+      }
+
       public List<Community> GetCommunities()
       {
         List<Community> allCommunities = new List<Community>{};
