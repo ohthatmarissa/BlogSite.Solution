@@ -32,5 +32,22 @@ namespace BlogSite.Controllers
     }
 
 
+    [HttpGet("/blogs/{blogId}/posts/new")]
+      public ActionResult New(int blogId)
+      {
+          
+          return View(blogId);
+      }
+
+
+    [HttpPost("/blogs/{blogId}/posts/{postId}")]
+    public ActionResult Show(int blogId, int postId,  DateTime postDate)
+    {
+      Post myPost = Post.Find(postId);
+      myPost.SetDate(postDate);
+      return View(myPost);
+    }
+
+    
   }
 }
