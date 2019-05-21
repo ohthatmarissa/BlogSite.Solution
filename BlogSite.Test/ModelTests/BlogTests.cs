@@ -115,15 +115,21 @@ namespace BlogSite.Tests
      Assert.AreEqual(password, newBlog.GetPassword());
      Assert.AreEqual(about, newBlog.GetAbout());
    }
-   //
+   [TestMethod]
+   public void Authenticate_ChecksIfPasswordAndUsernameAreTheSame_True()
+   {
+     Blog newBlog = new Blog("a", "b");
+     newBlog.Save();
+     Assert.AreEqual(true, Blog.Authenticate("a", "b"));
+   }
+
    // [TestMethod]
-   // public void Authenticate()
+   // public void Login_AddsUserToSessionBlogTable_User()
    // {
-   //
-   // }
-   // public void Login()
-   // {
-   //
+   //   Blog newBlog = new Blog("a", "b", 2);
+   //   newBlog.Save();
+   //   newBlog.Login();
+   //   Assert.AreEqual(newBlog.GetId(), SessionBlog.GetId());
    // }
    // [TestMethod]
    // public void GetCommunities()
