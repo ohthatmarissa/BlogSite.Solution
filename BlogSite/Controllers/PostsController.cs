@@ -36,27 +36,27 @@ namespace BlogSite.Controllers
     [HttpGet("/blogs/{blogId}/posts/new")]
       public ActionResult New(int blogId)
       {
+        ViewBag.Title = "Compose your masterpiece";
         return View(blogId);
       }
 
 
-    //   [HttpPost("/blogs/{id}/posts")]
-    //   public ActionResult Create(string title, string content, DateTime postDate, int id)
-    //   {
-    //     Post myPost = new Post(title, content, postDate, id);
-    //     myPost.SetDate(postDate);
-    //     myPost.Save();
-    //     return RedirectToAction("Show", "Blogs", id);
-    //   }
+      [HttpPost("/blogs/{id}/posts/new")]
+      public ActionResult Create(string title, string content, int id)
+      {
+        Post myPost = new Post(title, content, id);
+        myPost.Save();
+        return RedirectToAction("Show");
+      }
 
 
-    // [HttpPost("/blogs/{blogId}/posts/{postId}")]
-    // public ActionResult Show(int blogId, int postId,  DateTime postDate)
-    // {
-    //   Post myPost = Post.Find(postId);
-      
-    //   return View(myPost);
-    // }
+    [HttpGet("/blogs/{blogId}/posts/{postId}")]
+    public ActionResult Show(int blogId, int postId)
+    {
+      Post myPost = Post.Find(postId);
+      ViewBag.Title = Blog.FindById(blogId).GetTitle();
+      return View(myPost);
+    }
 
     
   }

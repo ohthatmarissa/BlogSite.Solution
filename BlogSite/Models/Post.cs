@@ -77,14 +77,6 @@ namespace BlogSite.Models
         }
 
 
-    public void Dispose()
-    {
-      Blog.ClearAll();
-      Post.ClearAll();
-      Community.ClearAll();
-    }
-
-
     public static void ClearAll()
     {
         MySqlConnection conn = DB.Connection();

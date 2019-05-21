@@ -57,15 +57,6 @@ namespace BlogSite.Models
             }
         }
     
-
-    public void Dispose()
-    {
-      Blog.ClearAll();
-      Post.ClearAll();
-      Community.ClearAll();
-    }
-
-
     public void Save()
     {
         MySqlConnection conn = DB.Connection();

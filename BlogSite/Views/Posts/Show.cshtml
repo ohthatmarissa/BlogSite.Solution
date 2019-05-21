@@ -1,6 +1,7 @@
 @using BlogSite.Models;
 @using System.Collections.Generic;
 @{Layout = "_Layout";}
+@Html.Partial("Header")
 
 <h3>@Model.GetTitle()</h3>
 <p>@Model.GetContent()
