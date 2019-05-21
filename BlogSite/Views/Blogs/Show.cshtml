@@ -13,7 +13,7 @@ else
     @foreach(Post post in Model.GetPosts())
     {
         <h2>@post.GetTitle()</h2>
-        <p>Posted by @Model.GetUsername() on @post.GetDate()</p>
+        <p>Posted by @Model.GetUsername() on @post.GetDate().ToString("MM-dd-yyyy")</p>
     }
 }
 
