@@ -17,7 +17,7 @@ namespace BlogSite.Controllers
           return View(allBlogs);
       }
 
-      [HttpGet("/blogs/new")]
+      [HttpGet("/blogs/register")]
       public ActionResult New()
       {
         ViewBag.Title = "Get Your Set Up On!";
@@ -32,12 +32,20 @@ namespace BlogSite.Controllers
           Blog newBlog = new Blog(username, password1);
           newBlog.Save();
           Blog.Login(username, password1);
+          
           return View("Edit", newBlog);
         }
         else
         {
-          return View("New");
+          return RedirectToAction("New");
         }
+      }
+
+      [HttpGet("/blogs/login")]
+      public ActionResult Login()
+      {
+        ViewBag.Title = "Log In";
+        return View();
       }
 
       [HttpPost("/blogs/login")]
@@ -48,10 +56,18 @@ namespace BlogSite.Controllers
         return View("Show", thisBlog);
       }
 
+      [HttpPost("/blogs/logout")]
+      public ActionResult Logout()
+      {
+        SessionBlog.Logout();
+        return RedirectToAction("Index", "Home");
+      }
+
       [HttpGet("/blogs/{id}/edit")]
       public ActionResult Edit(int id)
       {
         Blog foundBlog = Blog.FindById(id);
+        ViewBag.Title = "Edit Blog Details";
         return View(foundBlog);
       }
 
@@ -67,6 +83,7 @@ namespace BlogSite.Controllers
       public ActionResult Show(int id)
       {
         Blog thisBlog = Blog.FindById(id);
+        ViewBag.Title = thisBlog.GetTitle();
         return View(thisBlog);
       }
   }

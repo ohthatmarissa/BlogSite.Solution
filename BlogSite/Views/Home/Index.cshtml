@@ -1,4 +1,4 @@
-
+@using BlogSite.Models;
 
 <!DOCTYPE html>
 <html>
@@ -24,13 +24,20 @@
             <li><a href="#">Home Blog</a></li>
             <li><a href="/posts/search">Search Blogs</a></li>
             <li><a href="#">Community</a></li>
-            <li><a href="#">Login</a></li>
+            @if(SessionBlog.GetId() == 0)
+            {
+            <li><a href="/blogs/login">Login</a></li>
+            }
+            else
+            {
+            <li><form action="/blogs/logout" method="post"><button type="submit">Logout</button></form></li>
+            }
           </ul>
         </div>
       </nav>
       <div class="text-box">
         <h1>Welcome To Super Awesome Blog</h1>
-        <a class="btn btn-full" href="#">Start A Blog</a>
+        <a class="btn btn-full" href="/blogs/register">Start A Blog</a>
         <a class="btn btn-ghost" href="#">Tell Me More</a>
       </div>
     </header>
