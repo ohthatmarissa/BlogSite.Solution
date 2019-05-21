@@ -2,8 +2,120 @@
 @using System.Collections.Generic;
 @{Layout = "_Layout";}
 
-<form action="/posts/search" method="post">
-    <label for="search"></label><br>
-    <input type="text" name="search" required autocomplete="off"/>
-    <input type="Submit"></button>
-</form>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="stylesheet" type="text/css" href="wwwroot/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="wwwroot/css/grid.css">
+    <link rel="stylesheet" type="text/css" href="wwwroot/css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
+    <meta charset="utf-8">
+    <title>Awesome Blog</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="row">
+          <ul class="main-nav">
+            <li><a href="#">Home Blog</a></li>
+            <li><a href="/posts/search">Search Blogs</a></li>
+            <li><a href="#">Community</a></li>
+            <li><a href="#">Login</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="text-box">
+        <h1>Welcome To Super Awesome Blog</h1>
+        <a class="btn btn-full" href="#">Start A Blog</a>
+        <a class="btn btn-ghost" href="#">Tell Me More</a>
+      </div>
+    </header>
+    <section class="section-start">
+      <div class="row">
+        <h2>Start Your Own Blog!</h2>
+        <p class="long-copy"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+
+      <div class="row">
+        <div class="col span-1-of-4 box">
+          <ion-icon name="happy"></ion-icon>
+          <h3>It's Fun!</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+        <div class="col span-1-of-4 box">
+          <ion-icon name="cloud-done"></ion-icon>
+          <h3>It's Easy!</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+        <div class="col span-1-of-4 box">
+          <ion-icon name="contacts"></ion-icon>
+          <h3>Connect!</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+        <div class="col span-1-of-4 box">
+          <ion-icon name="rocket"></ion-icon>
+          <h3>Learn!</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="secion-about">
+      <ul class="about-showcase">
+        <li>
+          <figure class="about-photo">
+            <img src="resources/css/img/art.jpg" alt="Art Blog">
+          </figure>
+        </li>
+        <li>
+          <figure class="about-photo">
+            <img src="resources/css/img/balloon.jpg" alt="Adventure Blog">
+          </figure>
+        </li>
+        <li>
+          <figure class="about-photo">
+            <img src="resources/css/img/bike.jpg" alt="Bike Blog">
+          </figure>
+        </li>
+        <li>
+          <figure class="about-photo">
+            <img src="resources/css/img/car.jpg" alt="Car Blog">
+          </figure>
+        </li>
+      </ul>
+
+      <ul class="about-showcase2">
+        <!-- <li>
+          <figure class="about-photo">
+            <img src="resources/css/img/catdog.jpg" alt="Animal Blog">
+          </figure>
+        </li> -->
+        <li>
+          <figure class="about-photo">
+            <img src="resources/css/img/cooking.jpg" alt="Cooking Blog">
+          </figure>
+        </li>
+        <li>
+          <figure class="about-photo">
+            <img src="resources/css/img/dude.jpg" alt="Travel Blog">
+          </figure>
+        </li>
+        <li>
+          <figure class="about-photo">
+            <img src="resources/css/img/flower.jpg" alt="Gardening Blog">
+          </figure>
+        </li>
+        <li>
+          <figure class="about-photo">
+            <img src="resources/css/img/concert.jpg" alt="Concert Blog">
+          </figure>
+        </li>
+      </ul>
+    </section>
+    <footer>
+
+    </footer>
+  </body>
+</html>
+
