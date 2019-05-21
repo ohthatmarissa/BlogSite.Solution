@@ -27,6 +27,14 @@ section {
   padding: 1%;
 }
 
+/* ----Footer---- */
+footer {
+  background-color: #e67e22;
+  background-size: cover;
+  background-position: center;
+  height: 100px;
+}
+
 /* ----Header---- */
 header {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(img/top.jpg);
