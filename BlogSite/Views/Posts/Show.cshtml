@@ -2,3 +2,7 @@
 @using System.Collections.Generic;
 @{Layout = "_Layout";}
 
+<h3>@Model.GetTitle()</h3>
+<p>@Model.GetContent()
+    @Model.GetDate()
+</p>
