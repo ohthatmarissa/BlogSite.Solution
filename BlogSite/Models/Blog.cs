@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 
-namespace BlogSite.Models
+namespace BlogSite.Models 
 {
   public class Blog
   {

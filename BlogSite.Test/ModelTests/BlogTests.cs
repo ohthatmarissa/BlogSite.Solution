@@ -92,16 +92,29 @@ namespace BlogSite.Tests
      Blog foundBlog = Blog.FindByUsername(newBlog.GetUsername());
      Assert.AreEqual(newBlog, foundBlog);
    }
-   // [TestMethod]
-   // public void Delete()
-   // {
-   //
-   // }
-   // [TestMethod]
-   // public void Edit()
-   // {
-   //
-   // }
+   [TestMethod]
+   public void Delete_DeletesSpecificBlog_True()
+   {
+     Blog newBlog = new Blog("", "");
+     newBlog.Save();
+     Blog newBlog2 = new Blog("", "");
+     newBlog2.Save();
+     newBlog.Delete();
+     List<Blog> result = Blog.GetAll();
+     Assert.AreEqual(newBlog2, result[0]);
+   }
+   [TestMethod]
+   public void Edit()
+   {
+     Blog newBlog = new Blog("", "");
+     newBlog.Save();
+     string password = "password";
+     string about = "about";
+     newBlog.Edit("", password, "", about);
+     newBlog.Save();
+     Assert.AreEqual(password, newBlog.GetPassword());
+     Assert.AreEqual(about, newBlog.GetAbout());
+   }
    //
    // [TestMethod]
    // public void Authenticate()
