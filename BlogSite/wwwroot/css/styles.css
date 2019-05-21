@@ -203,6 +203,32 @@ h3 {
   transform: scale(1.05);
 }
 
+/* ----Forms---- */
+
+.form-box {
+  background-color: #f4f4f4;
+  border-radius: 5px;
+  width: 90%;
+  margin-left: 100%;
+  text-align: center;
+  box-shadow: 2px 2px 2px #e3e3e3;
+}
+
+.form-box ul {
+  list-style: none;
+}
+
+.form-box div {
+  padding: 15px;
+  border-bottom: 2px solid #e8e8e8;
+}
+
+h4{
+  font-size: 200%;
+  font-weight: 100;
+  margin-bottom: 10px;
+}
+
 /* ----Buttons---- */
 .btn:link,
 .btn:visited {
