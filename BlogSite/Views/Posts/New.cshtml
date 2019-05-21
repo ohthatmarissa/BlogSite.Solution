@@ -1,10 +1,11 @@
 @using BlogSite.Models;
 @using System.Collections.Generic;
 @{Layout = "_Layout";}
+@Html.Partial("Header")
 
 <form action="/blogs/@Model/posts/new" method="post">
  <label for="title">Title: </label>
- <input required id="title" name="title" type="text" /><br>
+ <input required id="title" name="title" type="text"><br>
  <label for="content">Content: </label>
  <textarea class= "k-textbox" style="width:100%; height: 70px;" required id="content" name="content" type="text" ></textarea><br>
  <!-- image upload -->
