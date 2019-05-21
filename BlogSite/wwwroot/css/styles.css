@@ -37,7 +37,7 @@ footer {
 
 /* ----Header---- */
 header {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(img/top.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/top.jpg");
   background-size: cover;
   background-position: center;
   height: 500px;
@@ -212,8 +212,9 @@ h3 {
 
 .btn-ghost:link,
 .btn-ghost:visited {
-  border: 1px solid #e67e22;
-  color: #e67e22;
+  background-color: #b05d14;
+  border: 1px solid #b05d14;
+  color: white;
 }
 
 .btn:hover,
@@ -228,6 +229,7 @@ h3 {
 
 .btn-ghost:hover,
 .btn-ghost:active {
-  border: 1px solid #b05d14;
-  color: white;
+  border: 1px solid #e67e22;
+  background-color: #e67e22;
+  /* color: white; */
 }
