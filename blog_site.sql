@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 20, 2019 at 09:45 PM
+-- Generation Time: May 21, 2019 at 06:40 PM
 -- Server version: 5.7.25
 -- PHP Version: 7.3.1
 
@@ -35,6 +35,12 @@ CREATE TABLE `blogs` (
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `blogs`
+--
+
+INSERT INTO `blogs` VALUES(1, 'Hello', 'This is something', 'lana', '111');
 
 -- --------------------------------------------------------
 
@@ -73,6 +79,13 @@ CREATE TABLE `posts` (
   `content` text NOT NULL,
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` VALUES(1, 1, 'This is first post', 'This is content of a very first post', '2019-05-20 00:00:00');
+INSERT INTO `posts` VALUES(2, 1, 'This is second post', 'This is a second post content', '2019-05-20 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -127,7 +140,7 @@ ALTER TABLE `session_blogs`
 -- AUTO_INCREMENT for table `blogs`
 --
 ALTER TABLE `blogs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `blogs_communities`
@@ -145,7 +158,7 @@ ALTER TABLE `communities`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `session_blogs`
