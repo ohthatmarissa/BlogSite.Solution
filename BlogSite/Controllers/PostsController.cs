@@ -25,9 +25,10 @@ namespace BlogSite.Controllers
     }
 
     [HttpPost("/posts/search")]
-    public ActionResult Search(string searchWord)
+    public ActionResult Search(string search)
     {
-      List<Post> searchResult = Post.PostSearch(searchWord);
+
+      List<Post> searchResult = Post.PostSearch(search);
       return View(searchResult);
     }
 
@@ -35,7 +36,6 @@ namespace BlogSite.Controllers
     [HttpGet("/blogs/{blogId}/posts/new")]
       public ActionResult New(int blogId)
       {
-          
         return View(blogId);
       }
 
