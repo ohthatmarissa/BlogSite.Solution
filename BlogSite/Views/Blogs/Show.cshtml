@@ -2,61 +2,6 @@
 @{Layout = "_Layout";}
 @Html.Partial("Header")
 
-@* <<<<<<< HEAD
-@if(Model.IsLoggedIn())
-{
-    <form method="get" action='/blogs/@Model.GetId()/edit'>
-        <button type="submit">Edit</button>
-    </form>
-}
-<h2>About</h2>
-<p>@Model.GetAbout()</p>
-@if(Model.GetPosts().Count < 1)
-{
-    <h3>There are no posts to display. <a href="/blogs/@Model.GetId()/posts/new">Write one!</a></h3>
-}
-else
-{
-    @foreach(Post post in Model.GetPosts())
-    {
-        <h2>@post.GetTitle()</h2>
-        <p>Posted by @Model.GetUsername() on @post.GetDate().ToString("MM-dd-yyyy")</p>
-        <a href="/blogs/@Model.GetId()/posts/@post.GetId()">Read more...</a>
-    }
-}
-
-
-<h2>Communities</h2>
-@if(Model.GetCommunities().Count == 0)
-{
-    <p>This blog is not currently associated with any communities.</p>
-}
-else
-{
-    @foreach(Community community in Model.GetCommunities())
-    {
-        <p><a href="/communities/@community.GetId()">@community.GetName()</a><form action="/blogs/@Model.GetId()/remove/@community.GetId()" method="post"><button type="submit">X</button></form></p>
-    }
-}
-<br>
-@if(Model.IsLoggedIn())
-{
-    <p id="add-community-link">Add your blog to a new community!</p>
-    <form hidden id="add-community-form" action="/blogs/@Model.GetId()/communities/new" method="post">
-        <select name="selectedCommunity">
-            <option value="0">Select A Community</option>
-            @foreach(Community community in Community.GetAll())
-            {
-                @if(!Model.GetCommunities().Contains(community))
-                {
-                <option value="@community.GetId()">@community.GetName()</option>
-                }
-            }
-        </select>
-        <button type="submit">+</button>
-    </form>
-} *@
-
 <div class="row">
   <div class="col span-1-of-3 box">
     <div class="form-box-post">
@@ -82,6 +27,7 @@ else
     <div class="row">
       <div class="col span-1-of-3 box">
         <div class="form-box-post">
+        <h2>Recent Posts</h2>
           @if(Model.GetPosts().Count < 1)
 
 
