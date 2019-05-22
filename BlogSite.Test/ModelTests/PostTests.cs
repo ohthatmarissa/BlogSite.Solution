@@ -119,7 +119,6 @@ namespace BlogSite.Tests
       Post newPost2 = new Post("", "a", 1);
       newPost2.Save();
       List<Post> newList = new List <Post>{newPost2};
-      string searchWord = "a";
       List <Post> result = Post.PostSearch("a");
       Console.WriteLine(result.Count);
       Console.WriteLine(newList.Count);

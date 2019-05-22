@@ -63,21 +63,36 @@ namespace BlogSite.Tests
       List<Community> testList = new List <Community>{newCommunity};
       CollectionAssert.AreEqual(result, testList);
     }
-    // [TestMethod]
-    // public void Find()
-    // {
-    //
-    // }
-    // [TestMethod]
-    // public void Delete()
-    // {
-    //
-    // }
-    // [TestMethod]
-    // public void Edit()
-    // {
-    //
-    // }
+    [TestMethod]
+    public void Find_ReturnsCorrectCommunityFromDatabase_Community()
+    {
+      Community newCommunity = new Community("", "");
+      newCommunity.Save();
+      Community foundCommunity = Community.Find(newCommunity.GetId());
+      Assert.AreEqual(newCommunity, foundCommunity);
+    }
+    [TestMethod]
+    public void Delete_DeletesSpecificCommunity_True()
+    {
+      Community newCommunity = new Community("", "");
+      newCommunity.Save();
+      Community newCommunity2 = new Community("", "");
+      newCommunity2.Save();
+      newCommunity.Delete();
+      List<Community> result = Community.GetAll();
+      Assert.AreEqual(newCommunity2, result[0]);
+    }
+    [TestMethod]
+    public void Edit()
+    {
+      Community newCommunity = new Community("", "");
+      newCommunity.Save();
+      string name = "name";
+      string description = "description";
+      newCommunity.Edit(name, description);
+      Assert.AreEqual(name, newCommunity.GetName());
+      Assert.AreEqual(description, newCommunity.GetDescription());
+    }
     // [TestMethod]
     // public void GetBlogs()
     // {
