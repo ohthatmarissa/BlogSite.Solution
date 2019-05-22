@@ -39,5 +39,23 @@ namespace BlogSite.Tests
         Assert.IsInstanceOfType(indexBlogView, typeof(ViewResult));
       }
 
+
+      [TestMethod]
+    public void Create_ReturnsCorrectActionType_RedirectToActionResult()
+    {
+        CommunitiesController controller = new CommunitiesController();
+        IActionResult view = controller.Create("name", "description");
+        Assert.IsInstanceOfType(view, typeof(RedirectToActionResult));
+    }
+
+    [TestMethod]
+    public void Create_RedirectsToCorrectAction_Index()
+    {
+        CommunitiesController controller = new CommunitiesController();
+        RedirectToActionResult actionResult = controller.Create("name", "description") as RedirectToActionResult;
+        string result = actionResult.ActionName;
+        Assert.AreEqual(result, "Index");
+    }
+
     }
 }

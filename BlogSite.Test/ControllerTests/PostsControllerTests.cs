@@ -44,13 +44,28 @@ namespace BlogSite.Tests
       public void Search_ReturnsCorrectView_True()
       {
         PostsController controller = new PostsController();
-        ActionResult searchView = controller.Search();
+        ActionResult searchView = controller.Search("search word");
         Assert.IsInstanceOfType(searchView, typeof(ViewResult));
       }
       
-      
-      
 
+    [TestMethod]
+    public void Delete_ReturnsCorrectActionType_RedirectToActionResult()
+    {
+        PostsController controller = new PostsController();
+        IActionResult view = controller.Destroy(1,1);
+        Assert.IsInstanceOfType(view, typeof(RedirectToActionResult));
+    }
 
+    [TestMethod]
+    public void Delete_RedirectsToCorrectAction_ShowBlogs()
+    {
+        PostsController controller = new PostsController();
+        RedirectToActionResult actionResult = controller.Destroy(1,1) as RedirectToActionResult;
+        string result = actionResult.ActionName;
+        Assert.AreEqual(result, "Show", "Blogs");
+    }
+      
+    
     }
 }
