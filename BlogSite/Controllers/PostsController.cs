@@ -15,13 +15,6 @@ namespace BlogSite.Controllers
   public class PostsController : Controller
   {
 
-    [HttpGet("/posts")]
-    public ActionResult Index()
-    {
-      List<Post> allPosts = Post.GetAll();
-      return View(allPosts);
-    }
-
     [HttpGet("/posts/search")]
     public ActionResult Search()
     {
