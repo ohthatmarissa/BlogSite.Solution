@@ -5,7 +5,7 @@
 
 <h3>@Model.GetTitle()</h3>
 <p>@Model.GetContent()
-    @Model.GetDate()
+    @Model.GetDate().ToString("MM-dd-yyyy")
 </p>
 
 @if(Blog.FindById(Model.GetBlogId()).IsLoggedIn())
