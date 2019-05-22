@@ -46,7 +46,7 @@ namespace BlogSite.Controllers
       {
         Post myPost = new Post(title, content, id);
         myPost.Save();
-        return RedirectToAction("Show");
+        return RedirectToAction("Show", new{blogId = myPost.GetBlogId(), postId = myPost.GetId()});
       }
 
 
@@ -58,6 +58,21 @@ namespace BlogSite.Controllers
       return View(myPost);
     }
 
-    
+    [HttpGet("/blogs/{blogId}/posts/{postId}/edit")]
+    public ActionResult Edit(int blogId, int postId)
+    {
+      Post editPost = Post.Find(postId);
+      ViewBag.Title = "Change Things Up";
+      return View(editPost);
+    }
+
+    [HttpPost("/blogs/{blogId}/posts/{postId}/update")]
+    public ActionResult Update(int blogId, int postId, string title, string content)
+    {
+      Console.WriteLine(title + " and " + content);
+      Post editPost = Post.Find(postId);
+      editPost.Edit(title, content);
+      return RedirectToAction("Show", new{blogId = blogId, postId = postId});
+    }
   }
 }

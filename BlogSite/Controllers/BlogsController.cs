@@ -53,7 +53,7 @@ namespace BlogSite.Controllers
       {
         Blog thisBlog = Blog.FindByUsername(username);
         Blog.Login(username, password);
-        return View("Show", thisBlog);
+        return RedirectToAction("Show", new{id = thisBlog.GetId()});
       }
 
       [HttpPost("/blogs/logout")]
@@ -76,7 +76,7 @@ namespace BlogSite.Controllers
       {
         Blog editBlog = Blog.FindById(id);
         editBlog.Edit(editBlog.GetUsername(), editBlog.GetPassword(), title, about);
-        return RedirectToAction("Show", editBlog);
+        return RedirectToAction("Show", new{id = editBlog.GetId()});
       }
 
       [HttpGet("/blogs/{id}")]
