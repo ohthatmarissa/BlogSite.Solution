@@ -303,6 +303,20 @@ namespace BlogSite.Models
         return allPosts;
         }
 
+        public string GetContentPreview()
+        {
+            string preview;
+            if(_content.Length < 300)
+            {
+                preview = _content;
+            }
+            else
+            {
+                preview = _content.Substring(0, 300) + "...";
+            }
+            return preview;
+        }
+
 
   }
 }
