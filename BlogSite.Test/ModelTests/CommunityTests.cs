@@ -27,7 +27,7 @@ namespace BlogSite.Tests
     }
 
     [TestMethod]
-    public void GetName()
+    public void GetName_GetsCommunityName_String()
     {
       string name = "name";
       Community newCommunity = new Community(name, "");
@@ -35,28 +35,34 @@ namespace BlogSite.Tests
 
     }
     [TestMethod]
-    public void GetDescription()
+    public void GetDescription_GetsCommunityDescription_String()
     {
       string description = "description";
       Community newCommunity = new Community("", description);
       Assert.AreEqual(description, newCommunity.GetDescription());
     }
     [TestMethod]
-    public void GetId()
+    public void GetId_GetsCommunityId_Int()
     {
       Community newCommunity = new Community("", "", 2);
-      Assert.AreEqual(2, newCommunity.GetId());    
+      Assert.AreEqual(2, newCommunity.GetId());
     }
-    // [TestMethod]
-    // public void Save()
-    // {
-    //
-    // }
-    // [TestMethod]
-    // public void GetAll()
-    // {
-    //
-    // }
+    [TestMethod]
+    public void GetAll_ReturnsEmptyCommunityList_CommunityList()
+    {
+      List<Community> allCommunities = new List <Community>{};
+      List <Community> result = Community.GetAll();
+      CollectionAssert.AreEqual(allCommunities, result);
+    }
+    [TestMethod]
+    public void Save_SavesCommunityToDatabase_DatabaseList()
+    {
+      Community newCommunity = new Community("", "");
+      newCommunity.Save();
+      List <Community> result = Community.GetAll();
+      List<Community> testList = new List <Community>{newCommunity};
+      CollectionAssert.AreEqual(result, testList);
+    }
     // [TestMethod]
     // public void Find()
     // {
