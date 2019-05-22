@@ -50,12 +50,26 @@ namespace BlogSite.Controllers
       public ActionResult Create(string title, string content, IFormFile file, int id)
       {
         string imgName = null;
-        if (file != null) {
+        if (file != null) 
+        {
           imgName = "1.jpg";
         }
         Post myPost = new Post(title, content, imgName, id);
         myPost.Save();
         return RedirectToAction("Show", new{blogId = myPost.GetBlogId(), postId = myPost.GetId()});
+      }
+
+      [HttpPost("/blogs/{blogId}/posts/{postId}/update")]
+      public ActionResult Update(int blogId, int postId, string title, string content, IFormFile file)
+      {
+        string imgName = null;
+        if (file != null) 
+        {
+          imgName = "1.jpg";
+        }
+        Post editPost = Post.Find(postId);
+        editPost.Edit(title, content, imgName);
+        return RedirectToAction("Show", new{blogId = blogId, postId = postId});
       }
 
 
@@ -73,15 +87,6 @@ namespace BlogSite.Controllers
       Post editPost = Post.Find(postId);
       ViewBag.Title = "Change Things Up";
       return View(editPost);
-    }
-
-    [HttpPost("/blogs/{blogId}/posts/{postId}/update")]
-    public ActionResult Update(int blogId, int postId, string title, string content, string file)
-    {
-      // Console.WriteLine(title + " and " + content);
-      Post editPost = Post.Find(postId);
-      editPost.Edit(title, content, file);
-      return RedirectToAction("Show", new{blogId = blogId, postId = postId});
     }
 
 
