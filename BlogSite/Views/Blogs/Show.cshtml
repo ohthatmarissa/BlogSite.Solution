@@ -2,6 +2,12 @@
 @{Layout = "_Layout";}
 @Html.Partial("Header")
 
+@if(Model.IsLoggedIn())
+{
+    <form method="get" action='/blogs/@Model.GetId()/edit'>
+        <button type="submit">Edit</button>
+    </form>
+}
 <h2>About</h2>
 <p>@Model.GetAbout()</p>
 @if(Model.GetPosts().Count < 1)
@@ -18,9 +24,34 @@ else
     }
 }
 
+
+<h2>Communities</h2>
+@if(Model.GetCommunities().Count == 0)
+{
+    <p>This blog is not currently associated with any communities.</p>
+}
+else
+{
+    @foreach(Community community in Model.GetCommunities())
+    {
+        <p><a href="/communities/@community.GetId()">@community.GetName()</a><form action="/blogs/@Model.GetId()/remove/@community.GetId()" method="post"><button type="submit">X</button></form></p>
+    }
+}
+<br>
 @if(Model.IsLoggedIn())
 {
-    <form method="get" action='/blogs/@Model.GetId()/edit'>
-        <button type="submit">Edit</button>
+    <p id="add-community-link">Add your blog to a new community!</p>
+    <form hidden id="add-community-form" action="/blogs/@Model.GetId()/communities/new" method="post">
+        <select name="selectedCommunity">
+            <option value="0">Select A Community</option>
+            @foreach(Community community in Community.GetAll())
+            {
+                @if(!Model.GetCommunities().Contains(community))
+                {
+                <option value="@community.GetId()">@community.GetName()</option>
+                }
+            }
+        </select>
+        <button type="submit">+</button>
     </form>
 }

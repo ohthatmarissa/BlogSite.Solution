@@ -1,6 +1,7 @@
 @using BlogSite.Models;
 @using System.Collections.Generic;
 @{Layout = "_Layout";}
+@Html.Partial("Header")
 
 @foreach(Community community in Community.GetAll())
 {

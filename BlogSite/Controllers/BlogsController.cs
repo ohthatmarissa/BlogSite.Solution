@@ -86,5 +86,21 @@ namespace BlogSite.Controllers
         ViewBag.Title = thisBlog.GetTitle();
         return View(thisBlog);
       }
+
+      [HttpPost("/blogs/{id}/communities/new")]
+      public ActionResult Update(int id, int selectedCommunity)
+      {
+        Blog thisBlog = Blog.FindById(id);
+        thisBlog.AddCommunity(selectedCommunity);
+        return RedirectToAction("Show", new{id=id});
+      }
+
+      [HttpPost("/blogs/{blogId}/remove/{communityId}")]
+      public ActionResult Delete(int blogId, int communityId)
+      {
+        Blog thisBlog = Blog.FindById(blogId);
+        thisBlog.RemoveCommunity(communityId);
+        return RedirectToAction("Show", new{id = blogId});
+      }
   }
 }
