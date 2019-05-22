@@ -39,6 +39,15 @@ namespace BlogSite.Tests
         Assert.IsInstanceOfType(newPostView, typeof(ViewResult));
       }
 
+      [TestMethod]
+      public void Edit_ReturnsCorrectView_True()
+      {
+        PostsController controller = new PostsController();
+        ActionResult newPostView = controller.Edit(1,1);
+        Assert.IsInstanceOfType(newPostView, typeof(ViewResult));
+      }
+
+
 
       [TestMethod]
       public void Search_ReturnsCorrectView_True()
