@@ -10,13 +10,6 @@ namespace BlogSite.Controllers
   public class BlogsController : Controller
   {
 
-      [HttpGet("/blogs")]
-      public ActionResult Index()
-      {
-          List<Blog> allBlogs = Blog.GetAll();
-          return View(allBlogs);
-      }
-
       [HttpGet("/blogs/register")]
       public ActionResult New()
       {
