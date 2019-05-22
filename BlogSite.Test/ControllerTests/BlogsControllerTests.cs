@@ -49,7 +49,68 @@ namespace BlogSite.Tests
       }
       
       
-      
+      [TestMethod]
+    public void Create_ReturnsCorrectActionType_RedirectToActionResult()
+    {
+        BlogsController controller = new BlogsController();
+        IActionResult view = controller.Create("test", "1111", "1111");
+        Assert.IsInstanceOfType(view, typeof(ViewResult));
+    }
+
+
+    [TestMethod]
+    public void Update_ReturnsCorrectActionType_RedirectToActionResult()
+    {
+        BlogsController controller = new BlogsController();
+        IActionResult view = controller.Update("test", "1111");
+        Assert.IsInstanceOfType(view, typeof(RedirectToActionResult));
+    }
+
+    [TestMethod]
+    public void Update_RedirectsToCorrectAction_Show()
+    {
+        BlogsController controller = new BlogsController();
+        RedirectToActionResult actionResult = controller.Update("test", "1111") as RedirectToActionResult;
+        string result = actionResult.ActionName;
+        Assert.AreEqual(result, "Show");
+    }
+
+
+
+    [TestMethod]
+    public void Logout_ReturnsCorrectActionType_RedirectToActionResult()
+    {
+        BlogsController controller = new BlogsController();
+        IActionResult view = controller.Logout();
+        Assert.IsInstanceOfType(view, typeof(RedirectToActionResult));
+    }
+
+    [TestMethod]
+    public void Logout_RedirectsToCorrectAction_IndexHome()
+    {
+        BlogsController controller = new BlogsController();
+        RedirectToActionResult actionResult = controller.Logout() as RedirectToActionResult;
+        string result = actionResult.ActionName;
+        Assert.AreEqual(result, "Index", "Home");
+    }
+
+
+    [TestMethod]
+    public void Delete_ReturnsCorrectActionType_RedirectToActionResult()
+    {
+        BlogsController controller = new BlogsController();
+        IActionResult view = controller.Delete(1,1);
+        Assert.IsInstanceOfType(view, typeof(RedirectToActionResult));
+    }
+
+    [TestMethod]
+    public void Delete_RedirectsToCorrectAction_Show()
+    {
+        BlogsController controller = new BlogsController();
+        RedirectToActionResult actionResult = controller.Delete(1,1) as RedirectToActionResult;
+        string result = actionResult.ActionName;
+        Assert.AreEqual(result, "Show");
+    }
 
 
     }
