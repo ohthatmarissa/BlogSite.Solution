@@ -317,7 +317,7 @@ namespace BlogSite.Models
           string postTitle = rdr.GetString(2);
           string postContent = rdr.GetString(3);
           DateTime postDate = rdr.GetDateTime(4);
-          string postFile = rdr.GetString(5);
+          string postFile =  rdr.IsDBNull(5) ? null : rdr.GetString(5);
 
           Post thisPost = new Post(postTitle, postContent, postFile, blogId, postId);
           thisPost.SetDate(postDate);
