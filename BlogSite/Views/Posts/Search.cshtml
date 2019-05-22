@@ -24,12 +24,27 @@
         </div>
       </form>
 
-          <ul>
-          @foreach (Post post in Model)
+          <br>
+          @if(Model.Count < 1)
+
+
           {
-            <li><a href="/blogs/Model.GetId()/posts/@post.GetId()">@post.GetTitle()</a></li>
+              <h3>There are no results to display :/</h3>
           }
-        </ul>
+          else
+
+          {
+              @foreach(Post post in Model)
+              {
+                  <br>
+                  <h3>@post.GetTitle()</h3>
+                  <p>Posted by <a href="/blogs/@post.GetBlogId()">@Blog.FindById(@post.GetBlogId()).GetUsername()</a> on @post.GetDate().ToString("MM-dd-yyyy")</p>
+                  <p>@post.GetContentPreview()</p>
+                  <a href="/blogs/@post.GetBlogId()/posts/@post.GetId()">Read more...</a>
+                  <br>
+              }
+          }
+        <br><br>
     </div>
   </div>
 </div>

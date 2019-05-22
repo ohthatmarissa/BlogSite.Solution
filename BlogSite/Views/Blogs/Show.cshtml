@@ -45,9 +45,12 @@
           {
               @foreach(Post post in Model.GetPosts())
               {
-                  <h2>@post.GetTitle()</h2>
+                  <br>
+                  <h3>@post.GetTitle()</h3>
                   <p>Posted by @Model.GetUsername() on @post.GetDate().ToString("MM-dd-yyyy")</p>
+                  <p>@post.GetContentPreview()</p>
                   <a href="/blogs/@Model.GetId()/posts/@post.GetId()">Read more...</a>
+                  <br>
               }
           }
 </div>

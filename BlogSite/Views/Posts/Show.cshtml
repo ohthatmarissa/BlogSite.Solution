@@ -12,7 +12,7 @@
     </div>
     <div>
       <h2>@Model.GetTitle()</h2><br>
-      <h3>@Model.GetDate()</h3>
+      <h3>Posted by <a href="/blogs/@Model.GetBlogId()">@Blog.FindById(@Model.GetBlogId()).GetUsername()</a> at @Model.GetDate()</h3>
     </div>
     @if (Model.GetFile() != null )
     {

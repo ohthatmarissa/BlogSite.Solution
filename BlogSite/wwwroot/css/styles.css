@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+a {
+  color: #e67e22;
+}
+
 body {
   background-color: white;
   color: #555;
