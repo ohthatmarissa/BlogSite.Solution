@@ -143,17 +143,22 @@ namespace BlogSite.Tests
      newPost2.Save();
      List <Post> result = newBlog.GetPosts();
      List <Post> postList = new List <Post>{newPost2};
-     Console.WriteLine(result.Count);
-     Console.WriteLine();
      CollectionAssert.AreEqual(result, postList);
    }
 
    [TestMethod]
    public void GetCommunities_ReturnsBlogCommunities_CommunityList()
    {
-     List <Post> result = newBlog.GetCommunities();
-
-     Assert.AreEqual(result, communityList);
+     Community newCommunity = new Community("","");
+     newCommunity.Save();
+     Blog newBlog = new Blog("","");
+     newBlog.Save();
+     newBlog.AddCommunity(newCommunity.GetId());
+     List <Community> result = newBlog.GetCommunities();
+     List <Community> communityList = new List <Community>{newCommunity};
+     Console.WriteLine(result.Count);
+     Console.WriteLine(communityList.Count);
+     CollectionAssert.AreEqual(result, communityList);
    }
 
    // [TestMethod]
