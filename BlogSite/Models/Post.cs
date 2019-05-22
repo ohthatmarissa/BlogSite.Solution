@@ -170,7 +170,7 @@ namespace BlogSite.Models
         string postTitle = rdr.GetString(2);
         string postContent = rdr.GetString(3);
         DateTime postDate = rdr.GetDateTime(4);
-        string postFile = rdr.GetString(5);
+        string postFile =  rdr.IsDBNull(5) ? null : rdr.GetString(5);
 
         Post newPost = new Post(postTitle, postContent, postFile, postBlogId, postId);
         newPost.SetDate(postDate);
@@ -201,7 +201,7 @@ namespace BlogSite.Models
         string postTitle = "";
         string postContent = "";
         DateTime postDate = new DateTime();
-        string postFile = "";
+        string postFile = null;
         while(rdr.Read())
         {
             postId = rdr.GetInt32(0);
@@ -209,7 +209,7 @@ namespace BlogSite.Models
             postTitle = rdr.GetString(2);
             postContent = rdr.GetString(3);
             postDate = rdr.GetDateTime(4);
-            postFile = rdr.GetString(5);
+            postFile =  rdr.IsDBNull(5) ? null : rdr.GetString(5);
         }
         Post foundPost = new Post(postTitle, postContent, postFile, postBlogId, postId);
         foundPost.SetDate(postDate);
@@ -293,7 +293,7 @@ namespace BlogSite.Models
             string postTitle = rdr.GetString(2);
             string postContent = rdr.GetString(3);
             DateTime postDate = rdr.GetDateTime(4);
-            string postFile = rdr.GetString(5);
+            string postFile =  rdr.IsDBNull(5) ? null : rdr.GetString(5);            
 
             Post searchPost = new Post(postTitle, postContent, postFile, postBlogId, postId);
             searchPost.SetDate(postDate);

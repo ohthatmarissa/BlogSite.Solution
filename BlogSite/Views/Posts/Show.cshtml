@@ -14,6 +14,10 @@
       <h2>@Model.GetTitle()</h2><br>
       <h3>@Model.GetDate()</h3>
     </div>
+    @if (Model.GetFile() != null )
+    {
+        <img src='/uploads/@Model.GetFile()'/>
+    }
     <div>
       <p>@Model.GetContent()</p>
     </div>
