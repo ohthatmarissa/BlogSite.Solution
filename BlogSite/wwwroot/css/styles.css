@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+a {
+  color: #e67e22;
+}
+
 body {
   height: 100%;
   position: relative;
@@ -112,7 +116,6 @@ footer p {
 .text-box {
   margin-top: 80px;
   margin-right: 20px;
-  float: right;
 }
 
 header {

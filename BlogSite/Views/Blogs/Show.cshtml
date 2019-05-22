@@ -45,11 +45,15 @@
           {
               @foreach(Post post in Model.GetPosts())
               {
-                  <h2>@post.GetTitle()</h2>
+                  <br>
+                  <h3>@post.GetTitle()</h3>
                   <p>Posted by @Model.GetUsername() on @post.GetDate().ToString("MM-dd-yyyy")</p>
+                  <p>@post.GetContentPreview()</p>
                   <a href="/blogs/@Model.GetId()/posts/@post.GetId()">Read more...</a>
+                  <br>
               }
           }
+          <br>
 </div>
 </div>
 </div>
@@ -67,10 +71,11 @@
         {
             @foreach(Community community in Model.GetCommunities())
             {
-                <p><a href="/communities/@community.GetId()">@community.GetName()</a><form action="/blogs/@Model.GetId()/remove/@community.GetId()" method="post"><button type="submit">X</button></form></p>
+                <a href="/communities/@community.GetId()">@community.GetName()</a>
+                @if(Model.IsLoggedIn()){<form action="/blogs/@Model.GetId()/remove/@community.GetId()" method="post"><button type="submit">X</button></form>}
             }
         }
-        <br>
+        <br><br>
         @if(Model.IsLoggedIn())
         {
             <p id="add-community-link">Add your blog to a new community!</p>

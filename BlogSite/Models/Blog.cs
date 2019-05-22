@@ -58,6 +58,16 @@ namespace BlogSite.Models
       _about = about;
     }
 
+    public static List<string> GetAllUsernames()
+    {
+        List<string> allUsernames = new List<string>{};
+        foreach(Blog blog in GetAll())
+        {
+            allUsernames.Add(blog.GetUsername());
+        }
+        return allUsernames;
+    }
+
 
     public override int GetHashCode()
     {
