@@ -83,5 +83,14 @@ namespace BlogSite.Controllers
       editPost.Edit(title, content, file);
       return RedirectToAction("Show", new{blogId = blogId, postId = postId});
     }
+
+
+    [HttpPost("/blogs/{blogId}/posts/{postId}/delete")]
+      public ActionResult Destroy(int blogId, int postId)
+      {
+        Post deletePost = Post.Find(postId);
+        deletePost.Delete();
+        return RedirectToAction("Show", "Blogs", new{blogId = blogId, postId = postId});
+      }
   }
 }

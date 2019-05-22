@@ -71,12 +71,12 @@ namespace BlogSite.Controllers
         return View(foundBlog);
       }
 
-      [HttpPost("/blogs/{id}/update")]
-      public ActionResult Update(int id, string title, string about)
+      [HttpPost("/blogs/{blogId}/update")]
+      public ActionResult Update(int blogId, string title, string about)
       {
-        Blog editBlog = Blog.FindById(id);
+        Blog editBlog = Blog.FindById(blogId);
         editBlog.Edit(editBlog.GetUsername(), editBlog.GetPassword(), title, about);
-        return RedirectToAction("Show", new{id = editBlog.GetId()});
+        return RedirectToAction("Show", new{id = blogId});
       }
 
       [HttpGet("/blogs/{id}")]
