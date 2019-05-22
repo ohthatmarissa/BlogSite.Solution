@@ -209,7 +209,6 @@ namespace BlogSite.Models
         }
         Post foundPost = new Post(postTitle, postContent, postFile, postBlogId, postId);
         foundPost.SetDate(postDate);
-
         conn.Close();
         if (conn != null)
             {
@@ -266,6 +265,7 @@ namespace BlogSite.Models
         cmd.ExecuteNonQuery();
         _title = newTitle;
         _content = newContent;
+        _file = newFile;
         conn.Close();
         if (conn != null)
             {
@@ -301,6 +301,20 @@ namespace BlogSite.Models
                 conn.Dispose();
             }
         return allPosts;
+        }
+
+        public string GetContentPreview()
+        {
+            string preview;
+            if(_content.Length < 300)
+            {
+                preview = _content;
+            }
+            else
+            {
+                preview = _content.Substring(0, 300) + "...";
+            }
+            return preview;
         }
 
 
