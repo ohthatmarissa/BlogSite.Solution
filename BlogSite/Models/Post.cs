@@ -209,7 +209,6 @@ namespace BlogSite.Models
         }
         Post foundPost = new Post(postTitle, postContent, postFile, postBlogId, postId);
         foundPost.SetDate(postDate);
-
         conn.Close();
         if (conn != null)
             {
@@ -266,6 +265,7 @@ namespace BlogSite.Models
         cmd.ExecuteNonQuery();
         _title = newTitle;
         _content = newContent;
+        _file = newFile;
         conn.Close();
         if (conn != null)
             {

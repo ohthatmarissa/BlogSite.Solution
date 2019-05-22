@@ -2,6 +2,11 @@
 @{Layout = "_Layout";}
 @Html.Partial("Header")
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 1bcc9b14779ef0a276fd1f3e1d352033272122d9
 <div class="row">
   <div class="col span-1-of-3 box">
     <div class="form-box-post">
@@ -27,12 +32,18 @@
     <div class="row">
       <div class="col span-1-of-3 box">
         <div class="form-box-post">
-        <h2>Recent Posts</h2>
+            <h2>Recent Posts</h2>
+            @if(Model.IsLoggedIn())
+            {
+            <form method="get" action='/blogs/@Model.GetId()/posts/new'>
+              <button type="submit">Add a New Post</button>
+            </form>
+            }
           @if(Model.GetPosts().Count < 1)
 
 
           {
-              <h3>There are no posts to display. <a href="/blogs/@Model.GetId()/posts/new">Write one!</a></h3>
+              <h3>There are no posts to display.</h3>
           }
           else
 
@@ -47,7 +58,6 @@
 </div>
 </div>
 </div>
-
 
 
 <div class="row">
@@ -83,8 +93,9 @@
                 <button type="submit">+</button>
             </form>
         }
+
       </div>
     </div>
   </div>
 </div>
->>>>>>> master
+
