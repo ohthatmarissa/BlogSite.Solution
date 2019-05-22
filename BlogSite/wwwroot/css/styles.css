@@ -156,7 +156,7 @@ h3 {
   border-bottom: 2px solid #e67e22;
 }
 
-/* ----Start---- */
+/* ----Photo Bar---- */
 /* .section-about {
   padding: 40px;
 } */
@@ -203,15 +203,45 @@ h3 {
   transform: scale(1.05);
 }
 
+/* ----Forms---- */
+
+.form-box {
+  background-color: #f4f4f4;
+  border-radius: 5px;
+  width: 90%;
+  margin-left: 100%;
+  text-align: center;
+  box-shadow: 2px 2px 2px #e3e3e3;
+}
+
+.form-box ul {
+  list-style: none;
+}
+
+.form-box div {
+  padding: 15px;
+  border-bottom: 2px solid #e8e8e8;
+}
+
+h4{
+  font-size: 200%;
+  font-weight: 100;
+  margin-bottom: 10px;
+}
+
 /* ----Buttons---- */
-.btn:link,
-.btn:visited {
+button {
   display: inline-block;
   padding: 10px 30px;
   font-weight: 300;
   text-decoration: none;
   border-radius: 200px;
-  transition: background-color 0.2s, border 0.2s, color 0.2s;
+
+  background-color: #e67e22;
+  border: 1px solid #e67e22;
+  color: white;
+  margin-right: 15px;
+  transition: background-color 0.2s, border 0.2s, color 0.2s
 }
 
 .btn-full:link,
@@ -229,8 +259,8 @@ h3 {
   color: white;
 }
 
-.btn:hover,
-.btn:active {
+button:hover,
+button:active {
   background-color: #b05d14;
 }
 

@@ -77,14 +77,6 @@ namespace BlogSite.Models
         }
 
 
-    public void Dispose()
-    {
-      Blog.ClearAll();
-      Post.ClearAll();
-      Community.ClearAll();
-    }
-
-
     public static void ClearAll()
     {
         MySqlConnection conn = DB.Connection();
@@ -243,7 +235,7 @@ namespace BlogSite.Models
         content.ParameterName = "@newContent";
         content.Value = newContent;
         cmd.Parameters.Add(content);
-
+        cmd.ExecuteNonQuery();
         _title = newTitle;
         _content = newContent;
         conn.Close();

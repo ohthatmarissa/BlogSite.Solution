@@ -1,0 +1,30 @@
+@using BlogSite.Models;
+@using System.Collections.Generic;
+@{Layout = "_Layout";}
+@Html.Partial("Header")
+
+
+<div class="row">
+  <div class="col span-1-of-3 box">
+    <div class="form-box">
+      <form action="/blogs/login" method="post">
+        <div>
+          <ul>
+            <li><ion-icon name="paper-plane"></ion-icon></li>
+            <li>Enter Your Login Info</li>
+          </ul>
+        </div>
+        <div>
+          <label>Username:</label>
+          <input type="text" name="username" required><br>
+          <label>Enter a password:</label>
+          <input password type="password" name="password" required><br
+          <label>Password:</label>
+          </div>
+          <div>
+          <button class="btn-full" type="submit">Log In</button>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
