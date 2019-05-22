@@ -83,14 +83,6 @@ namespace BlogSite.Models
             }
         }
 
-    public void Dispose()
-    {
-      Blog.ClearAll();
-      Post.ClearAll();
-      Community.ClearAll();
-    }
-
-
      public void Save()
     {
         MySqlConnection conn = DB.Connection();
@@ -290,6 +282,7 @@ namespace BlogSite.Models
 
       public static void Login(string username, string password)
       {
+        SessionBlog.Logout();
         if(Authenticate(username, password))
         {
           MySqlConnection conn = DB.Connection();
@@ -396,6 +389,11 @@ namespace BlogSite.Models
         {
           conn.Dispose();
         }
+      }
+
+      public bool IsLoggedIn()
+      {
+        return _id == SessionBlog.GetId();
       }
   }
 }

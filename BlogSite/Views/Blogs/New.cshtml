@@ -1,24 +1,32 @@
 @using BlogSite.Models;
 @using System.Collections.Generic;
 @{Layout = "_Layout";}
+@Html.Partial("Header")
+
 
 <!-- signup form -->
-<form action="/blogs/register" method="post">
-    <label>Choose a username:</label>
-    <input type="text" name="username" required>
-    <label>Enter a password:</label>
-    <input password type="password" name="password1" required>
-    <label>Re-enter password:</label>
-    <input type="password" name="password2" required>
-    <button type="submit">Register</button>
-</form>
-
-<!-- login form -->
-<form action="/blogs/login" method="post">
-    <label>Username:</label>
-    <input type="text" name="username" required>
-    <label>Enter a password:</label>
-    <input password type="password" name="password" required>
-    <label>Password:</label>
-    <button type="submit">Log In</button>
-</form>
+<div class="row">
+  <div class="col span-1-of-3 box">
+    <div class="form-box">
+      <form action="/blogs/register" method="post">
+        <div>
+          <ul>
+            <li><ion-icon name="unlock"></ion-icon></li>
+            <li><h4>Choose Your Login Info</h4></li>
+          </ul>
+        </div>
+        <div>
+          <label>Choose a username:</label>
+          <input type="text" name="username" required><br>
+          <label>Enter a password:</label>
+          <input password type="password" name="password1" required><br>
+          <label>Re-enter password:</label>
+          <input type="password" name="password2" required><br>
+        </div>
+        <div>
+          <button class="btn btn-full" type="submit">Start A Blog</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
