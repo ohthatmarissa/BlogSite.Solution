@@ -26,7 +26,7 @@ body {
 }
 
 section {
-  padding: 80px 0;
+  padding: 40px 0;
 }
 
 .box {
@@ -231,9 +231,16 @@ h3 {
   padding: 40px;
 } */
 
+/* .section-about {
+  border: 5px solid black;
+  height: 450px;
+  width: 100%;
+} */
+
 .about-showcase {
   list-style: none;
   width: 100%;
+  border-top: 8px solid black;
 }
 
 .about-showcase li {
@@ -266,6 +273,7 @@ h3 {
   display: block;
   float: left;
   width: 25%;
+  border-bottom: 8px solid black;
 }
 
 .about-photo img:hover {
@@ -281,6 +289,7 @@ h3 {
   width: 90%;
   margin-top: 40px;
   margin-left: 99%;
+  margin-bottom: 250px;
   text-align: center;
   box-shadow: 2px 2px 7px #e67e22;
 }
@@ -382,6 +391,7 @@ button:active {
 
 .btn-full:hover,
 .btn-full:active {
+  background-color: #b05d14;
   border: 1px solid #b05d14;
 }
 
