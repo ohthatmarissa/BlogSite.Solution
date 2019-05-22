@@ -109,7 +109,6 @@ namespace BlogSite.Tests
       newPost.Edit(title, content);
       Assert.AreEqual(title, newPost.GetTitle());
       Assert.AreEqual(content, newPost.GetContent());
-
     }
     [TestMethod]
     public void PostSearch_SearchesForContentContainingSearchWord_Content()

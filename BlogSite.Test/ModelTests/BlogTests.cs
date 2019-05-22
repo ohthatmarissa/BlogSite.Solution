@@ -124,21 +124,38 @@ namespace BlogSite.Tests
      newBlog.Save();
      Assert.AreEqual(true, Blog.Authenticate("a", "b"));
    }
+   [TestMethod]
+   public void Login_AddsUserToSessionBlogTable_User()
+   {
+     Blog newBlog = new Blog("a", "b", 2);
+     newBlog.Save();
+     Blog.Login("a", "b");
+     Assert.AreEqual(newBlog.GetId(), SessionBlog.GetId());
+   }
+   [TestMethod]
+   public void GetPosts_GetsAllBlogPosts_PostList()
+   {
+     Blog newBlog = new Blog("a", "b");
+     newBlog.Save();
+     Post newPost = new Post("", "", 5);
+     newPost.Save();
+     Post newPost2 = new Post("", "", newBlog.GetId());
+     newPost2.Save();
+     List <Post> result = newBlog.GetPosts();
+     List <Post> postList = new List <Post>{newPost2};
+     Console.WriteLine(result.Count);
+     Console.WriteLine();
+     CollectionAssert.AreEqual(result, postList);
+   }
 
-   // [TestMethod]
-   // public void Login_AddsUserToSessionBlogTable_User()
-   // {
-   //   Blog newBlog = new Blog("a", "b", 2);
-   //   newBlog.Save();
-   //   newBlog.Login();
-   //   Assert.AreEqual(newBlog.GetId(), SessionBlog.GetId());
-   // }
-   // [TestMethod]
-   // public void GetCommunities()
-   // {
-   //
-   // }
-   //
+   [TestMethod]
+   public void GetCommunities_ReturnsBlogCommunities_CommunityList()
+   {
+     List <Post> result = newBlog.GetCommunities();
+
+     Assert.AreEqual(result, communityList);
+   }
+
    // [TestMethod]
    // public void AddCommunity()
    // {

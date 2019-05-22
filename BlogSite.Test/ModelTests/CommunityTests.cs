@@ -93,11 +93,11 @@ namespace BlogSite.Tests
       Assert.AreEqual(name, newCommunity.GetName());
       Assert.AreEqual(description, newCommunity.GetDescription());
     }
-    // [TestMethod]
-    // public void GetBlogs()
-    // {
-    //
-    // }
+    [TestMethod]
+    public void GetBlogs_GetsCommunityBlogs_BlogList()
+    {
+      
+    }
     // [TestMethod]
     // public void AddBlog()
     // {

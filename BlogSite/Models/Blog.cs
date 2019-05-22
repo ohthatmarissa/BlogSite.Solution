@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 
-namespace BlogSite.Models 
+namespace BlogSite.Models
 {
   public class Blog
   {
@@ -302,7 +302,7 @@ namespace BlogSite.Models
 
       public List<Post> GetPosts()
       {
-        List<Post> allPosts = new List<Post>{};
+        List<Post> allPosts = new List<Post>{}; 
         MySqlConnection conn = DB.Connection();
         conn.Open();
         var cmd = conn.CreateCommand() as MySqlCommand;
