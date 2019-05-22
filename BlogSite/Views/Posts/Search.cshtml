@@ -11,6 +11,6 @@
     <ul>
     @foreach (Post post in Model)
     {
-      <li><a href="/posts/@post.GetId()">@post.GetTitle()</a></li>
+      <li><a href="/blogs/Model.GetId()/posts/@post.GetId()">@post.GetTitle()</a></li>
     }
   </ul>

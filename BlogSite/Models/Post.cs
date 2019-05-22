@@ -1,6 +1,11 @@
 using System;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
+using System.Web;
+using System.IO;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 
 namespace BlogSite.Models
 {
@@ -11,16 +16,25 @@ namespace BlogSite.Models
     private string _title;
     private string _content;
     private DateTime _date;
+    private string _file;
 
 
-    public Post(string postTitle, string postContent, int postBlogId, int id = 0)
+    public Post(string postTitle, string postContent, string file, int postBlogId, int id = 0)
     {
       _title = postTitle;
       _content = postContent;
       _date = DateTime.Now;
+      _file = file;
       _blogId = postBlogId;
       _id = id;
     }
+
+
+    public string GetFile()
+    {
+        return _file;
+    }
+
 
     public string GetTitle()
     {
@@ -98,7 +112,7 @@ namespace BlogSite.Models
         conn.Open();
 
         var cmd = conn.CreateCommand() as MySqlCommand;
-        cmd.CommandText = @"INSERT INTO posts (title, content, date, blog_id) VALUES (@title, @content, @date, @blogId);";
+        cmd.CommandText = @"INSERT INTO posts (title, content, date, file, blog_id) VALUES (@title, @content, @date, @file, @blogId);";
 
         MySqlParameter title = new MySqlParameter();
         title.ParameterName = "@title";
@@ -114,6 +128,11 @@ namespace BlogSite.Models
         date.ParameterName = "@date";
         date.Value = this._date;
         cmd.Parameters.Add(date);
+
+        MySqlParameter file = new MySqlParameter();
+        file.ParameterName = "@file";
+        file.Value = this._file;
+        cmd.Parameters.Add(file);
 
         MySqlParameter blogId = new MySqlParameter();
         blogId.ParameterName = "@blogId";
@@ -138,7 +157,7 @@ namespace BlogSite.Models
     MySqlConnection conn = DB.Connection();
     conn.Open();
     MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-    cmd.CommandText = @"SELECT id, blog_id, title, content, date FROM posts;";
+    cmd.CommandText = @"SELECT id, blog_id, title, content, date, file FROM posts;";
     MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
     while(rdr.Read())
     {
@@ -147,8 +166,9 @@ namespace BlogSite.Models
         string postTitle = rdr.GetString(2);
         string postContent = rdr.GetString(3);
         DateTime postDate = rdr.GetDateTime(4);
+        string postFile =  rdr.IsDBNull(5) ? null : rdr.GetString(5);
 
-        Post newPost = new Post(postTitle, postContent, postBlogId, postId);
+        Post newPost = new Post(postTitle, postContent, postFile, postBlogId, postId);
         newPost.SetDate(postDate);
         allPosts.Add(newPost);
     }
@@ -177,6 +197,7 @@ namespace BlogSite.Models
         string postTitle = "";
         string postContent = "";
         DateTime postDate = new DateTime();
+        string postFile = null;
         while(rdr.Read())
         {
             postId = rdr.GetInt32(0);
@@ -184,8 +205,9 @@ namespace BlogSite.Models
             postTitle = rdr.GetString(2);
             postContent = rdr.GetString(3);
             postDate = rdr.GetDateTime(4);
+            postFile =  rdr.IsDBNull(5) ? null : rdr.GetString(5);
         }
-        Post foundPost = new Post(postTitle, postContent, postBlogId, postId);
+        Post foundPost = new Post(postTitle, postContent, postFile, postBlogId, postId);
         foundPost.SetDate(postDate);
 
         conn.Close();
@@ -215,12 +237,12 @@ namespace BlogSite.Models
         }
 
 
-        public void Edit(string newTitle, string newContent)
+        public void Edit(string newTitle, string newContent, string newFile)
         {
         MySqlConnection conn = DB.Connection();
         conn.Open();
         var cmd = conn.CreateCommand() as MySqlCommand;
-        cmd.CommandText = @"UPDATE posts SET title = @newTitle, content = @newContent WHERE id = (@searchId);";
+        cmd.CommandText = @"UPDATE posts SET title = @newTitle, content = @newContent, file = @newFile WHERE id = (@searchId);";
         MySqlParameter searchId = new MySqlParameter();
         searchId.ParameterName = "@searchId";
         searchId.Value = _id;
@@ -235,6 +257,12 @@ namespace BlogSite.Models
         content.ParameterName = "@newContent";
         content.Value = newContent;
         cmd.Parameters.Add(content);
+
+        MySqlParameter file = new MySqlParameter();
+        file.ParameterName = "@newFile";
+        file.Value = newFile;
+        cmd.Parameters.Add(file);
+
         cmd.ExecuteNonQuery();
         _title = newTitle;
         _content = newContent;
@@ -252,7 +280,7 @@ namespace BlogSite.Models
         MySqlConnection conn = DB.Connection();
         conn.Open();
         MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-        cmd.CommandText = @"SELECT id, blog_id, title, content, date FROM posts WHERE content LIKE '%"+searchWord+"%';";
+        cmd.CommandText = @"SELECT id, blog_id, title, content, date, file FROM posts WHERE content LIKE '%"+searchWord+"%';";
         MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
         while(rdr.Read())
         {
@@ -261,8 +289,9 @@ namespace BlogSite.Models
             string postTitle = rdr.GetString(2);
             string postContent = rdr.GetString(3);
             DateTime postDate = rdr.GetDateTime(4);
+            string postFile =  rdr.IsDBNull(5) ? null : rdr.GetString(5);            
 
-            Post searchPost = new Post(postTitle, postContent, postBlogId, postId);
+            Post searchPost = new Post(postTitle, postContent, postFile, postBlogId, postId);
             searchPost.SetDate(postDate);
             allPosts.Add(searchPost);
         }

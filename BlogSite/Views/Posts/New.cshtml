@@ -3,10 +3,11 @@
 @{Layout = "_Layout";}
 @Html.Partial("Header")
 
+
 <div class="row">
   <div class="col span-1-of-3 box">
     <div class="form-box-post">
-      <form action="/blogs/@Model/posts/new" method="post">
+      <form action="/blogs/@Model/posts/new" method="post" enctype="multipart/form-data">
       <div class="col span-1-of-3">
         <ion-icon name="radio-button-off"></ion-icon>
       </div>
@@ -28,7 +29,10 @@
          <label for="content">Content: </label>
          <textarea class= "k-textbox" style="width:100%; height: 148px;" required id="content" name="content" type="text" ></textarea><br>
        </div>
-       <!-- image upload -->
+       <br>
+       <label for="file">Upload an image:</label>
+        <input type="file" name="file" />
+        <br>
        <div>
        <button type="submit" >Save</button>
        </div>
@@ -36,3 +40,4 @@
     </div>
   </div>
 </div>
+
