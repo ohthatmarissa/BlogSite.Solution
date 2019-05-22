@@ -22,53 +22,65 @@ namespace BlogSite.Tests
     [TestMethod]
     public void CommunityConstructor_CreatesNewCommunity_Community()
     {
-      Community newCommunity = new Community("", "", 0);
+      Community newCommunity = new Community("", "");
       Assert.AreEqual(typeof(Community), newCommunity.GetType());
-     }
+    }
+
+    [TestMethod]
+    public void GetName()
+    {
+      string name = "name";
+      Community newCommunity = new Community(name, "");
+      Assert.AreEqual(name, newCommunity.GetName());
+
+    }
     [TestMethod]
     public void GetDescription()
     {
-      
+      string description = "description";
+      Community newCommunity = new Community("", description);
+      Assert.AreEqual(description, newCommunity.GetDescription());
     }
     [TestMethod]
     public void GetId()
     {
-
+      Community newCommunity = new Community("", "", 2);
+      Assert.AreEqual(2, newCommunity.GetId());    
     }
-    [TestMethod]
-    public void Save()
-    {
-
-    }
-    [TestMethod]
-    public void GetAll()
-    {
-
-    }
-    [TestMethod]
-    public void Find()
-    {
-
-    }
-    [TestMethod]
-    public void Delete()
-    {
-
-    }
-    [TestMethod]
-    public void Edit()
-    {
-
-    }
-    [TestMethod]
-    public void GetBlogs()
-    {
-
-    }
-    [TestMethod]
-    public void AddBlog()
-    {
-
-    }
+    // [TestMethod]
+    // public void Save()
+    // {
+    //
+    // }
+    // [TestMethod]
+    // public void GetAll()
+    // {
+    //
+    // }
+    // [TestMethod]
+    // public void Find()
+    // {
+    //
+    // }
+    // [TestMethod]
+    // public void Delete()
+    // {
+    //
+    // }
+    // [TestMethod]
+    // public void Edit()
+    // {
+    //
+    // }
+    // [TestMethod]
+    // public void GetBlogs()
+    // {
+    //
+    // }
+    // [TestMethod]
+    // public void AddBlog()
+    // {
+    //
+    // }
   }
 }
