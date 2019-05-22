@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 21, 2019 at 06:40 PM
+-- Generation Time: May 22, 2019 at 06:48 AM
 -- Server version: 5.7.25
 -- PHP Version: 7.3.1
 
@@ -17,10 +17,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `blog_site_test`
+-- Database: `blog_site`
 --
-CREATE DATABASE IF NOT EXISTS `blog_site_test` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `blog_site_test`;
+CREATE DATABASE IF NOT EXISTS `blog_site` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `blog_site`;
 
 -- --------------------------------------------------------
 
@@ -35,6 +35,14 @@ CREATE TABLE `blogs` (
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `blogs`
+--
+
+INSERT INTO `blogs` VALUES(1, 'Hello', 'This is something', 'lana', '111');
+INSERT INTO `blogs` VALUES(3, 'My Awesome Blog', 'bla', 'blabla', '1111');
+INSERT INTO `blogs` VALUES(4, 'My Awesome Blog', 'lol', 'vitalii', '1');
 
 -- --------------------------------------------------------
 
@@ -71,8 +79,22 @@ CREATE TABLE `posts` (
   `blog_id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `content` text NOT NULL,
-  `date` datetime NOT NULL
+  `date` datetime NOT NULL,
+  `file` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` VALUES(1, 1, 'This is first post', 'This is content of a very first post', '2019-05-20 00:00:00', '');
+INSERT INTO `posts` VALUES(2, 1, 'This is second post', 'This is a second post content', '2019-05-20 00:00:00', '');
+INSERT INTO `posts` VALUES(3, 1, 'Hello', 'Hello world', '2019-05-21 00:00:00', '');
+INSERT INTO `posts` VALUES(4, 0, 'bla', 'bnls', '2019-05-21 21:57:14', '');
+INSERT INTO `posts` VALUES(5, 3, 'bla', 'bla', '2019-05-21 22:23:25', '');
+INSERT INTO `posts` VALUES(6, 3, 'bla', 'bla', '2019-05-21 22:24:25', '');
+INSERT INTO `posts` VALUES(7, 1, 'Test', 'dfgdfg dfg dfg df', '2019-05-21 23:08:11', '');
+INSERT INTO `posts` VALUES(8, 1, 'Test2', 'dfgdfg dfg dfg df', '2019-05-21 23:09:04', '');
 
 -- --------------------------------------------------------
 
@@ -84,6 +106,12 @@ CREATE TABLE `session_blogs` (
   `id` int(11) NOT NULL,
   `blog_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `session_blogs`
+--
+
+INSERT INTO `session_blogs` VALUES(2, 4);
 
 --
 -- Indexes for dumped tables
@@ -127,7 +155,7 @@ ALTER TABLE `session_blogs`
 -- AUTO_INCREMENT for table `blogs`
 --
 ALTER TABLE `blogs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `blogs_communities`
@@ -145,13 +173,13 @@ ALTER TABLE `communities`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `session_blogs`
 --
 ALTER TABLE `session_blogs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -3,16 +3,14 @@
 @{Layout = "_Layout";}
 @Html.Partial("Header")
 
-<form action="/blogs/@Model/posts/new" method="post">
+<form action="/blogs/@Model/posts/new" method="post" enctype="multipart/form-data">
  <label for="title">Title: </label>
  <input required id="title" name="title" type="text"><br>
  <label for="content">Content: </label>
  <textarea class= "k-textbox" style="width:100%; height: 70px;" required id="content" name="content" type="text" ></textarea><br>
- <label for="avatar">Choose a picture for your post:</label>
+  
+ <label for="file">Upload an image:</label>
+ <input type="file" name="file" />
 
-<input type="file"
-       id="avatar" name="avatar"
-       accept="image/png, image/jpeg, image/jpg">
-
- <button type="submit" >Save</button>
+ <button type="submit">Save</button>
 </form> 
