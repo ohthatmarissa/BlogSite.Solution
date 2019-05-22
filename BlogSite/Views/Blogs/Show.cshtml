@@ -14,6 +14,7 @@ else
     {
         <h2>@post.GetTitle()</h2>
         <p>Posted by @Model.GetUsername() on @post.GetDate().ToString("MM-dd-yyyy")</p>
+        <a href="/blogs/@Model.GetId()/posts/@post.GetId()">Read more...</a>
     }
 }
 
