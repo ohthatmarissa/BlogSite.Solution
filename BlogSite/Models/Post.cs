@@ -35,10 +35,6 @@ namespace BlogSite.Models
         return _file;
     }
 
-    public void  SetFile(string postFile)
-    {
-       _file = postFile;
-    }
 
     public string GetTitle()
     {
