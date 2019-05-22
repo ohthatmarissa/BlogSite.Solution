@@ -25,5 +25,20 @@ namespace BlogSite.Controllers
           ViewBag.Title = thisCommunity.GetName();
           return View(thisCommunity);
       }
+
+      [HttpGet("/communities/new")]
+      public ActionResult New()
+      {
+          ViewBag.Title = "Add a Community";
+          return View();
+      }
+
+      [HttpPost("/communities/create")]
+      public ActionResult Create(string name, string description)
+      {
+          Community newCommunity = new Community(name, description);
+          newCommunity.Save();
+          return RedirectToAction("Index");
+      }
   }
 }
