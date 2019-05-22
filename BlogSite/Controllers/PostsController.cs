@@ -95,7 +95,7 @@ namespace BlogSite.Controllers
       {
         Post deletePost = Post.Find(postId);
         deletePost.Delete();
-        return RedirectToAction("Show", "Blogs", new{blogId = blogId, postId = postId});
+        return RedirectToAction("Show", "Blogs", new{id = blogId});
       }
   }
 }
