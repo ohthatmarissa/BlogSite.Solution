@@ -337,7 +337,7 @@ namespace BlogSite.Models
         MySqlConnection conn = DB.Connection();
         conn.Open();
         var cmd = conn.CreateCommand() as MySqlCommand;
-        cmd.CommandText = @"SELECT communities.* FROM communities JOIN blogs_communities ON (communities.id = blogs_communities.blog_id) WHERE blog_id = @thisId;";
+        cmd.CommandText = @"SELECT communities.* FROM communities JOIN blogs_communities ON (communities.id = blogs_communities.community_id) WHERE blog_id = @thisId;";
         MySqlParameter thisId = new MySqlParameter("@thisId", _id);
         cmd.Parameters.Add(thisId);
         MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
@@ -359,19 +359,22 @@ namespace BlogSite.Models
 
       public void AddCommunity(int communityId)
       {
-        MySqlConnection conn = DB.Connection();
-        conn.Open();
-        var cmd = conn.CreateCommand() as MySqlCommand;
-        cmd.CommandText = @"INSERT INTO blogs_communities (blog_id, community_id) VALUES (@thisBlogId, @thisCommunityId);";
-        MySqlParameter thisBlogId = new MySqlParameter("@thisBlogId", _id);
-        MySqlParameter thisCommunityId = new MySqlParameter("@thisCommunityId", communityId);
-        cmd.Parameters.Add(thisBlogId);
-        cmd.Parameters.Add(thisCommunityId);
-        cmd.ExecuteNonQuery();
-        conn.Close();
-        if(conn != null)
+        if(communityId != 0)
         {
-          conn.Dispose();
+          MySqlConnection conn = DB.Connection();
+          conn.Open();
+          var cmd = conn.CreateCommand() as MySqlCommand;
+          cmd.CommandText = @"INSERT INTO blogs_communities (blog_id, community_id) VALUES (@thisBlogId, @thisCommunityId);";
+          MySqlParameter thisBlogId = new MySqlParameter("@thisBlogId", _id);
+          MySqlParameter thisCommunityId = new MySqlParameter("@thisCommunityId", communityId);
+          cmd.Parameters.Add(thisBlogId);
+          cmd.Parameters.Add(thisCommunityId);
+          cmd.ExecuteNonQuery();
+          conn.Close();
+          if(conn != null)
+          {
+            conn.Dispose();
+          }
         }
       }
 
