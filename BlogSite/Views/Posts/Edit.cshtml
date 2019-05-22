@@ -6,19 +6,43 @@
 
 @if(Blog.FindById(Model.GetBlogId()).IsLoggedIn())
 {
-<form action="/blogs/@Model.GetBlogId()/posts/@Model.GetId()/update" method="post" enctype="multipart/form-data">
-    <label>Post Title:</label>
-    <input type="text" name="title" value="@Model.GetTitle()" required>
-    <label>Content:</label>
-    <textarea class= "k-textbox" style="width:100%; height: 148px;" type="text" name="content" required>@Model.GetContent()</textarea><br>
 
-    <label for="file">Upload an image:</label>
-    <input type="file" name="file" />
+  <div class="row">
+    <div class="col span-1-of-3 box">
+      <div class="form-box-post">
+        <form action="/blogs/@Model.GetBlogId()/posts/@Model.GetId()/update" method="post" enctype="multipart/form-data">
+        <div class="col span-1-of-3">
+          <ion-icon name="radio-button-off"></ion-icon>
+        </div>
+        <div class="col span-1-of-3">
+          <ion-icon name="radio-button-off"></ion-icon>
+        </div>
+        <div class="col span-1-of-3">
+          <ion-icon name="radio-button-off"></ion-icon>
+        </div>
+        <br>
+        <br>
+        <div>
+            <label>Post Title:</label>
+            <input type="text" name="title" value="@Model.GetTitle()" required><br>
+        </div>
+        <div>
+            <label>Content:</label>
+            <textarea class= "k-textbox" style="width:100%; height: 148px;" required  name="content" type="text" >@Model.GetContent()</textarea><br>
+          </div>
 
-    <button type="submit">Save</button>
-</form>
-}
-else
-{
-<p>Are you lost?</p>
-}
+          <label for="file">Upload an image:</label>
+          <input type="file" name="file" />
+        <div>
+            <button type="submit">Save</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+        }
+        else
+        {
+        <p>Are you lost?</p>
+        }
+

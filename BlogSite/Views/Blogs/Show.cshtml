@@ -2,27 +2,45 @@
 @{Layout = "_Layout";}
 @Html.Partial("Header")
 
-<h2>About</h2>
-<p>@Model.GetAbout()</p>
-@if(Model.GetPosts().Count < 1)
-{
-    <h3>There are no posts to display. <a href="/blogs/@Model.GetId()/posts/new">Write one!</a></h3>
-}
-else
-{
-    @foreach(Post post in Model.GetPosts())
-    {
-        <h2>@post.GetTitle()</h2>
-        <p>Posted by @Model.GetUsername() on @post.GetDate().ToString("MM-dd-yyyy")</p>
-        <a href="/blogs/@Model.GetId()/posts/@post.GetId()">Read more...</a>
-    }
-}
+<div class="row">
+  <div class="col span-1-of-3 box">
+    <div class="form-box-post">
+    <div class="post-icon">
+      <ion-icon name="list-box"></ion-icon>
+    </div>
+    <div>
+      <h2>About</h2>
+      <p>@Model.GetAbout()</p>
+    </div>
+    <div>
+      @if(Model.GetPosts().Count < 1)
 
-@if(Model.IsLoggedIn())
-{
-    <form method="get" action='/blogs/@Model.GetId()/edit'>
-        <button type="submit">Edit</button>
-    </form>
-}
+      {
+          <h3>There are no posts to display. <a href="/blogs/@Model.GetId()/posts/new">Write one!</a></h3>
+      }
+      else
+      {
+          @foreach(Post post in Model.GetPosts())
+          {
+              <h2>@post.GetTitle()</h2>
+              <p>Posted by @Model.GetUsername() on @post.GetDate().ToString("MM-dd-yyyy")</p>
+              <a href="/blogs/@Model.GetId()/posts/@post.GetId()">Read more...</a>
+          }
+      }
 
-<a href="/blogs/@Model.GetId()/posts/new">Add a New Post</a>
+      @if(Model.IsLoggedIn())
+      {
+          <form method="get" action='/blogs/@Model.GetId()/edit'>
+              <button type="submit">Edit</button>
+          </form>
+          <br>
+          <br>
+          <form method="get" action='/blogs/@Model.GetId()/posts/new'>
+              <button type="submit">Add a New Post</button>
+          </form>
+
+      }
+      </div>
+    </div>
+  </div>
+</div>
