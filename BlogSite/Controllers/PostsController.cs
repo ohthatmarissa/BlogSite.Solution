@@ -69,7 +69,6 @@ namespace BlogSite.Controllers
     [HttpPost("/blogs/{blogId}/posts/{postId}/update")]
     public ActionResult Update(int blogId, int postId, string title, string content)
     {
-      Console.WriteLine(title + " and " + content);
       Post editPost = Post.Find(postId);
       editPost.Edit(title, content);
       return RedirectToAction("Show", new{blogId = blogId, postId = postId});
