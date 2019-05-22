@@ -1,5 +1,9 @@
 @using BlogSite.Models;
 @using System.Collections.Generic;
 @{Layout = "_Layout";}
+@Html.Partial("Header")
 
-
+@foreach(Community community in Community.GetAll())
+{
+    <p><a href="/communities/@community.GetId()">@community.GetName()</p>
+}

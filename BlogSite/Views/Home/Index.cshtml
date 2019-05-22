@@ -21,7 +21,14 @@
       <nav>
         <div class="row">
           <ul class="main-nav">
-            <li><a href="#">Home Blog</a></li>
+            @if(SessionBlog.GetId() == 0)
+            {
+            <li><a href="/">Home</a></li>
+            }
+            else
+            {
+            <li><a href="/blogs/@SessionBlog.GetId()">Home</a></li>
+            }
             <li><a href="/posts/search">Search Blogs</a></li>
             <li><a href="#">Community</a></li>
             @if(SessionBlog.GetId() == 0)
