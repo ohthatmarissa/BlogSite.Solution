@@ -106,7 +106,7 @@ namespace BlogSite.Tests
      Assert.AreEqual(newBlog2, result[0]);
    }
    [TestMethod]
-   public void Edit()
+   public void Edit_ChangesBlogElements_Strings()
    {
      Blog newBlog = new Blog("", "");
      newBlog.Save();

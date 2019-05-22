@@ -100,6 +100,18 @@ namespace BlogSite.Tests
       Assert.AreEqual(newPost2, result[0]);
     }
     [TestMethod]
+    public void Edit_EditsPostElements_Strings()
+    {
+      Post newPost = new Post("", "", 0);
+      newPost.Save();
+      string title = "title";
+      string content = "content";
+      newPost.Edit(title, content);
+      Assert.AreEqual(title, newPost.GetTitle());
+      Assert.AreEqual(content, newPost.GetContent());
+
+    }
+    [TestMethod]
     public void PostSearch_SearchesForContentContainingSearchWord_Content()
     {
       Post newPost = new Post("", "", 0);

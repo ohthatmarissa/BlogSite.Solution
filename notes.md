@@ -18,7 +18,7 @@ Unregistered
 Filler content
 -Three usernames
 -Three blog titles
--Three about mes
+-Three about mes: Office Dwight, Cat mom, Loveable jerk: Lady who threw coworkers lunch in the garbage.
 -3 posts per blog
 -5 communities with descriptions
 Email Danielle!
