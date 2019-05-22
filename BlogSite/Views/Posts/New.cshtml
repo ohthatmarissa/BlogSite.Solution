@@ -3,12 +3,36 @@
 @{Layout = "_Layout";}
 @Html.Partial("Header")
 
-<form action="/blogs/@Model/posts/new" method="post">
- <label for="title">Title: </label>
- <input required id="title" name="title" type="text"><br>
- <label for="content">Content: </label>
- <textarea class= "k-textbox" style="width:100%; height: 70px;" required id="content" name="content" type="text" ></textarea><br>
- <!-- image upload -->
-
- <button type="submit" >Save</button>
-</form> 
+<div class="row">
+  <div class="col span-1-of-3 box">
+    <div class="form-box-post">
+      <form action="/blogs/@Model/posts/new" method="post">
+      <div class="col span-1-of-3">
+        <ion-icon name="radio-button-off"></ion-icon>
+      </div>
+      <div class="col span-1-of-3">
+        <ion-icon name="radio-button-off"></ion-icon>
+      </div>
+      <div class="col span-1-of-3">
+        <ion-icon name="radio-button-off"></ion-icon>
+      </div>
+      <br>
+      <br>
+      <div>
+         <label for="title">Blog Title: </label>
+         <input required id="title" name="title" type="text">
+       </div>
+       <br>
+       <br>
+       <div>
+         <label for="content">Content: </label>
+         <textarea class= "k-textbox" style="width:100%; height: 100px;" required id="content" name="content" type="text" ></textarea><br>
+       </div>
+       <!-- image upload -->
+       <div>
+       <button type="submit" >Save</button>
+       </div>
+      </form>
+    </div>
+  </div>
+</div>
