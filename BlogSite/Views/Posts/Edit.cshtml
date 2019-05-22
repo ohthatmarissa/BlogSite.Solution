@@ -6,11 +6,15 @@
 
 @if(Blog.FindById(Model.GetBlogId()).IsLoggedIn())
 {
-<form action="/blogs/@Model.GetBlogId()/posts/@Model.GetId()/update" method="post">
+<form action="/blogs/@Model.GetBlogId()/posts/@Model.GetId()/update" method="post" enctype="multipart/form-data">
     <label>Post Title:</label>
     <input type="text" name="title" value="@Model.GetTitle()" required>
     <label>Content:</label>
     <input type="text" name="content" value="@Model.GetContent()" required>
+
+    <label for="file">Upload an image:</label>
+    <input type="file" name="file" id="file" />
+
     <button type="submit">Save</button>
 </form>
 }

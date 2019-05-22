@@ -4,6 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using BlogSite.Models;
 using System.Linq;
 using MySql.Data.MySqlClient;
+using System.Web;
+using System.IO;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 
 namespace BlogSite.Controllers
 {
@@ -42,9 +47,13 @@ namespace BlogSite.Controllers
 
 
       [HttpPost("/blogs/{id}/posts/new")]
-      public ActionResult Create(string title, string content, int id)
+      public ActionResult Create(string title, string content, IFormFile file, int id)
       {
-        Post myPost = new Post(title, content, id);
+        string imgName = null;
+        if (file != null) {
+          imgName = "1.jpg";
+        }
+        Post myPost = new Post(title, content, imgName, id);
         myPost.Save();
         return RedirectToAction("Show", new{blogId = myPost.GetBlogId(), postId = myPost.GetId()});
       }
@@ -67,10 +76,11 @@ namespace BlogSite.Controllers
     }
 
     [HttpPost("/blogs/{blogId}/posts/{postId}/update")]
-    public ActionResult Update(int blogId, int postId, string title, string content)
+    public ActionResult Update(int blogId, int postId, string title, string content, string file)
     {
+      // Console.WriteLine(title + " and " + content);
       Post editPost = Post.Find(postId);
-      editPost.Edit(title, content);
+      editPost.Edit(title, content, file);
       return RedirectToAction("Show", new{blogId = blogId, postId = postId});
     }
   }

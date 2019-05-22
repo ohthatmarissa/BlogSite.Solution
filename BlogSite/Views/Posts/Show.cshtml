@@ -3,6 +3,7 @@
 @{Layout = "_Layout";}
 @Html.Partial("Header")
 
+
 <div class="row">
   <div class="col span-1-of-3 box">
     <div class="form-box-post">
@@ -13,9 +14,14 @@
       <h2>@Model.GetTitle()</h2><br>
       <h3>@Model.GetDate()</h3>
     </div>
+    @if (Model.GetFile() != null )
+    {
+        <img src='/uploads/@Model.GetFile()'/>
+    }
     <div>
       <p>@Model.GetContent()</p>
     </div>
+
 
 
       @if(Blog.FindById(Model.GetBlogId()).IsLoggedIn())
