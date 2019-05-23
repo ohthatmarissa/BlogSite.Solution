@@ -19,6 +19,7 @@ namespace BlogSite.Controllers
     public ActionResult Search()
     {
       List<Post> list = new List <Post> {};
+      ViewBag.Title = "Find That Which You Seek";
        return View(list);
     }
 
