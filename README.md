@@ -13,6 +13,7 @@ _This application allows users to register with username and password, add blog,
 #### _User Stories_
 
 * _As an unregistered user, I need to be able to register with my username and password. Username and password must be unique._
+* _If a username or password is notunique the warning should appear._
 * _As an unregistered user I need to be able to see blogs and posts. I'm not allowed to edit or delete someones blogs or posts._
 * _As an unregistered user I need to be able to see communities._
 * _As an unregistered user I need to be able to search for a particular words in posts._
@@ -44,7 +45,6 @@ _This application allows users to register with username and password, add blog,
   _5. CREATE TABLE communities (id serial PRIMARY KEY NOT NULL, name VARCHAR(255), description TEXT);_
   _6. CREATE TABLE posts (id serial PRIMARY KEY NOT NULL, blog_ig INT, title VARCHAR(255), content TEXT, date DATE, file VARCHAR(255) NULL);_
   _7. CREATE TABLE session_blogs (id serial PRIMARY KEY NOT NULL, blog_ig INT);_
-  
   _8. SHOW TABLES;_
 * _Open Terminal (for Mac users) or PowerShell (for Windows users), navigate to BlogSite folder(cd .../Desktop/BlogSite.Solution/BlogSite) and run the following command: dotnet add package MySqlConnector && dotnet restore && dotnet build && dotnet run._
 * _Copy http://localhost:5000 link and paste in the browser of your choise_.
