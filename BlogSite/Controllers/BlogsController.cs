@@ -10,13 +10,6 @@ namespace BlogSite.Controllers
   public class BlogsController : Controller
   {
 
-      [HttpGet("/blogs")]
-      public ActionResult Index()
-      {
-          List<Blog> allBlogs = Blog.GetAll();
-          return View(allBlogs);
-      }
-
       [HttpGet("/blogs/register")]
       public ActionResult New()
       {
@@ -27,18 +20,11 @@ namespace BlogSite.Controllers
       [HttpPost("/blogs/register")]
       public ActionResult Create(string username, string password1, string password2)
       {
-        if(password1 == password2)
-        {
-          Blog newBlog = new Blog(username, password1);
-          newBlog.Save();
-          Blog.Login(username, password1);
-          
-          return View("Edit", newBlog);
-        }
-        else
-        {
-          return RedirectToAction("New");
-        }
+        Blog newBlog = new Blog(username, password1);
+        newBlog.Save();
+        Blog.Login(username, password1);
+        
+        return View("Edit", newBlog);
       }
 
       [HttpGet("/blogs/login")]
@@ -71,12 +57,12 @@ namespace BlogSite.Controllers
         return View(foundBlog);
       }
 
-      [HttpPost("/blogs/{id}/update")]
-      public ActionResult Update(int id, string title, string about)
+      [HttpPost("/blogs/{blogId}/update")]
+      public ActionResult Update(int blogId, string title, string about)
       {
-        Blog editBlog = Blog.FindById(id);
+        Blog editBlog = Blog.FindById(blogId);
         editBlog.Edit(editBlog.GetUsername(), editBlog.GetPassword(), title, about);
-        return RedirectToAction("Show", new{id = editBlog.GetId()});
+        return RedirectToAction("Show", new{id = blogId});
       }
 
       [HttpGet("/blogs/{id}")]
@@ -85,6 +71,22 @@ namespace BlogSite.Controllers
         Blog thisBlog = Blog.FindById(id);
         ViewBag.Title = thisBlog.GetTitle();
         return View(thisBlog);
+      }
+
+      [HttpPost("/blogs/{id}/communities/new")]
+      public ActionResult Update(int id, int selectedCommunity)
+      {
+        Blog thisBlog = Blog.FindById(id);
+        thisBlog.AddCommunity(selectedCommunity);
+        return RedirectToAction("Show", new{id=id});
+      }
+
+      [HttpPost("/blogs/{blogId}/remove/{communityId}")]
+      public ActionResult Delete(int blogId, int communityId)
+      {
+        Blog thisBlog = Blog.FindById(blogId);
+        thisBlog.RemoveCommunity(communityId);
+        return RedirectToAction("Show", new{id = blogId});
       }
   }
 }

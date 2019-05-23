@@ -1,2 +1,0 @@
--Communitytests
--Finish blog tests!!!!

@@ -1,5 +1,24 @@
 @using BlogSite.Models;
 @using System.Collections.Generic;
 @{Layout = "_Layout";}
+@Html.Partial("Header")
 
+<div class="row">
+  <div class="col span-1-of-3 box">
+    <div class="form-box-post">
+        <br>
+        @foreach(Community community in Community.GetAll())
+        {
+            <p><a href="/communities/@community.GetId()">@community.GetName()</a></p>
+        }
+        <br>
+        <br>
 
+        @if(SessionBlog.GetId() != 0)
+        {
+            <p>Don't see what you're looking for? <a href="/communities/new">Start a new community!</a></p>
+        }
+        <br>
+    </div>
+  </div>
+</div>

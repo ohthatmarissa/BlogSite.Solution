@@ -3,17 +3,42 @@
 @{Layout = "_Layout";}
 @Html.Partial("Header")
 
-<h3>@Model.GetTitle()</h3>
-<p>@Model.GetContent()
-    @Model.GetDate()
-</p>
 
-@if(Blog.FindById(Model.GetBlogId()).IsLoggedIn())
-{
-    <form method="get" action='/blogs/@Model.GetBlogId()/posts/@Model.GetId()/edit'>
-        <button type="submit">Edit</button>
-    </form>
-    <form method="post" action='/blogs/@Model.GetId()/edit'>
-        <button type="submit">Delete</button>
-    </form>
-}
+<div class="row">
+  <div class="col span-1-of-3 box">
+    <div class="form-box-post">
+    <div class="post-icon">
+      <ion-icon name="list-box"></ion-icon>
+    </div>
+    <div>
+      <h2>@Model.GetTitle()</h2><br>
+      <h3>Posted by <a href="/blogs/@Model.GetBlogId()">@Blog.FindById(@Model.GetBlogId()).GetUsername()</a> at @Model.GetDate()</h3>
+    </div>
+    @if (Model.GetFile() != null )
+    {
+        <img src='/uploads/@Model.GetFile()'/>
+    }
+    <div>
+      <p>@Model.GetContent()</p>
+    </div>
+
+
+
+      @if(Blog.FindById(Model.GetBlogId()).IsLoggedIn())
+      {
+      <div class="row">
+        <div class="col span-1-of-2 box">
+          <form method="get" action='/blogs/@Model.GetBlogId()/posts/@Model.GetId()/edit'>
+              <button type="submit">Edit</button>
+          </form>
+        </div>
+        <div class="col span-1-of-2 box">
+          <form method="post" action='/blogs/@Model.GetBlogId()/posts/@Model.GetId()/delete'>
+              <button type="submit">Delete</button>
+          </form>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>

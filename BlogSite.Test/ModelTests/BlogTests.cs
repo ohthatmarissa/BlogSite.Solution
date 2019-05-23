@@ -137,9 +137,9 @@ namespace BlogSite.Tests
    {
      Blog newBlog = new Blog("a", "b");
      newBlog.Save();
-     Post newPost = new Post("", "", 5);
+     Post newPost = new Post("", "", "", 5);
      newPost.Save();
-     Post newPost2 = new Post("", "", newBlog.GetId());
+     Post newPost2 = new Post("", "", "", newBlog.GetId());
      newPost2.Save();
      List <Post> result = newBlog.GetPosts();
      List <Post> postList = new List <Post>{newPost2};

@@ -1,16 +1,50 @@
 @using BlogSite.Models;
 @using System.Collections.Generic;
 @{Layout = "_Layout";}
+@Html.Partial("Header")
 
-<form action="/posts/search" method="post">
-    <label for="search"></label><br>
-    <input type="text" name="search" required autocomplete="off"/>
-    <input type="Submit"></button>
-</form>
 
-    <ul>
-    @foreach (Post post in Model)
-    {
-      <li><a href="/posts/@post.GetId()">@post.GetTitle()</a></li>
-    }
-  </ul>
+<div class="row">
+  <div class="col span-1-of-3 box">
+    <div class="form-box-post">
+      <form action="/posts/search" method="post">
+        <div class="col span-1-of-3">
+          <ion-icon name="radio-button-off"></ion-icon>
+        </div>
+        <div class="col span-1-of-3">
+          <ion-icon name="radio-button-off"></ion-icon>
+        </div>
+        <div class="col span-1-of-3">
+          <ion-icon name="radio-button-off"></ion-icon>
+        </div>
+          <label for="search"></label><br>
+          <input type="text" name="search" placeholder="Search" required autocomplete="off"/><br>
+        <div>
+          <button type="Submit">Submit</button>
+        </div>
+      </form>
+
+          <br>
+          @if(Model.Count < 1)
+
+
+          {
+              <h3>There are no results to display :/</h3>
+          }
+          else
+
+          {
+              @foreach(Post post in Model)
+              {
+                  <br>
+                  <h3>@post.GetTitle()</h3>
+                  <p>Posted by <a href="/blogs/@post.GetBlogId()">@Blog.FindById(@post.GetBlogId()).GetUsername()</a> on @post.GetDate().ToString("MM-dd-yyyy")</p>
+                  <p>@post.GetContentPreview()</p>
+                  <a href="/blogs/@post.GetBlogId()/posts/@post.GetId()">Read more...</a>
+                  <br>
+              }
+          }
+        <br><br>
+    </div>
+  </div>
+</div>

@@ -12,6 +12,7 @@
         <link href="~/css/normalize.css" rel="stylesheet" type="text/css">
         <link href="~/css/grid.css" rel="stylesheet" type="text/css">
         <link href="~/css/styles.css" rel="stylesheet">
+        <script src="/js/index.js"></script>
 
           <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
           <script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
@@ -21,9 +22,16 @@
       <nav>
         <div class="row">
           <ul class="main-nav">
-            <li><a href="#">Home Blog</a></li>
+            @if(SessionBlog.GetId() == 0)
+            {
+            <li><a href="/">Home</a></li>
+            }
+            else
+            {
+            <li><a href="/blogs/@SessionBlog.GetId()">Home</a></li>
+            }
             <li><a href="/posts/search">Search Blogs</a></li>
-            <li><a href="#">Community</a></li>
+            <li><a href="/communities">Community</a></li>
             @if(SessionBlog.GetId() == 0)
             {
             <li><a href="/blogs/login">Login</a></li>
@@ -38,45 +46,49 @@
       <div class="text-box">
         <h1>Welcome To Super Awesome Blog</h1>
         <a class="btn btn-full" href="/blogs/register">Start A Blog</a>
-        <a class="btn btn-ghost" href="#">Tell Me More</a>
+        <a class="btn btn-ghost js--scroll-to-boom" href="#">Tell Me More</a>
       </div>
     </header>
 
     <section class="section-start">
       <div class="row">
         <h2>Start Your Own Blog!</h2>
-        <p class="long-copy"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p class="long-copy"> Blogs today have become an essential part of daily life worldwide.<br>
+          It’s raining blogs!<br>
+          Life was never so tech savvy before this.<br>
+          Whether one needs advice, needs to share a personal experience, be aware of the views on any topic, all one needs is to gear up and punch in a few keys and write a blog</p>
       </div>
 
       <div class="row">
         <div class="col span-1-of-4 box">
           <ion-icon name="happy"></ion-icon>
           <h3>It's Fun!</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p>Sometimes your mind is abuzz with creative ideas, which you are not too sure of, expressing openly, you have a lot of fear of their acceptance, or you are not too sure how to start something like that, blogs are the best option for unleashing your creative ideas.</p>
         </div>
         <div class="col span-1-of-4 box">
           <ion-icon name="cloud-done"></ion-icon>
           <h3>It's Easy!</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p>Many people like to write and they like to write for themselves. Basically, this is what blogging is all about. It’s why blogging started, and it’s why blogging exists. Most people just want to keep an online space for writing.</p>
         </div>
         <div class="col span-1-of-4 box">
           <ion-icon name="contacts"></ion-icon>
           <h3>Connect!</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p>It’s a great way of meeting new people, globally or locally.  Blogging helps to spread ideas and connections beyond geographical boundaries. You can connect with your friends, family or fans to let them know what you think about certain issues.</p>
         </div>
         <div class="col span-1-of-4 box">
           <ion-icon name="rocket"></ion-icon>
           <h3>Learn!</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p>There are almost half a million blogs available on the web, they cover almost every topic. One can gain and share information on the topic of interest. Updating blogs regularly with the latest information is a perfect way to stay abreast with the events in a specific field or topic.</p>
         </div>
       </div>
     </section>
 
-    <section class="secion-about">
+    <section class="section-about-clearfix">
       <ul class="about-showcase">
+
         <li>
           <figure class="about-photo">
-            <img src="~/img/art.jpg" alt="Art Blog">
+            <img src="~/img/flower2.jpg" alt="Gardening Blog">
           </figure>
         </li>
         <li>
@@ -114,24 +126,56 @@
         </li>
         <li>
           <figure class="about-photo">
-            <img src="~/img/flower.jpg" alt="Gardening Blog">
+          <img src="~/img/concert.jpg" alt="Concert Blog">
           </figure>
         </li>
         <li>
           <figure class="about-photo">
-          <img src="~/img/concert.jpg" alt="Concert Blog">
+            <img src="~/img/art.jpg" alt="Art Blog">
           </figure>
         </li>
+
       </ul>
     </section>
-    <section>
-    <div class="row">
-      <h2>Boom!</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    </div>
-    </section>
-    <footer>
 
-    </footer>
+    <section class="section-boom js--section-boom">
+      <div class="row">
+        <h2>The Dream</h2>
+        <p class="long-copy">Most people look at professional bloggers and think, “Oh, all I have to do is write a few things, click a few buttons, and I can make a lot of money!” But this is very, very, very untrue.<br>
+          A lot of people start blogging for money. And while you can make money blogging, I need to say it again:<br>
+          If there’s no passion, you’ll find making money very hard.<br>
+          Blogging can be a gold mine for people who want to tap into the rich field of online marketing, but if you just want to make money, you’ll make more money at a “traditional” job.<br>
+          If you do want to make money blogging, you should have a well-planned road map for your blog, and be able to target a profitable niche.</p>
+      </div>
+    <br>
+    <br>
+
+    </section>
+
   </body>
+  <footer class="footer">
+    <div class="row">
+      <div class="col span-1-of-2">
+        <ul class="footer-nav">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col span-1-of-2">
+        <ul class="social-icons">
+          <li><a href="#"><ion-icon name="logo-instagram"></ion-icon></a></li>
+          <li><a href="#"><ion-icon name="logo-google"></ion-icon></a></li>
+          <li><a href="#"><ion-icon name="logo-facebook"></ion-icon></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="box">
+      <p>
+        Copyright &copy; 2019 By Awesome Blog. All rights reserved.
+      </p>
+    </div>
+  </footer>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </html>

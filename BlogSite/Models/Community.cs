@@ -206,20 +206,16 @@ namespace BlogSite.Models
 
         public List<Blog> GetBlogs()
     {
+        List<Blog> blogs = new List<Blog> {};
         MySqlConnection conn = DB.Connection();
         conn.Open();
         var cmd = conn.CreateCommand() as MySqlCommand;
-        cmd.CommandText = @"SELECT blogs.* FROM
-            communities JOIN blogs_communities ON (communities.id = blogs_communities.community_id)
-                    JOIN blogs ON (blogs_communities.blog_id = blogs.id)
-                    WHERE blogs.id = @CommunityId;";
+        cmd.CommandText = @"SELECT blogs.* FROM blogs JOIN blogs_communities ON (blogs.id = blogs_communities.blog_id) WHERE blogs_communities.community_id = @CommunityId;";
         MySqlParameter communityIdParameter = new MySqlParameter();
         communityIdParameter.ParameterName = "@CommunityId";
         communityIdParameter.Value = _id;
         cmd.Parameters.Add(communityIdParameter);
         MySqlDataReader blogQueryRdr = cmd.ExecuteReader() as MySqlDataReader;
-        List<Blog> blogs = new List<Blog> {
-        };
 
         while(blogQueryRdr.Read())
         {

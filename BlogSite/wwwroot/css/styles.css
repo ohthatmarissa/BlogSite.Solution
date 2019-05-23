@@ -4,7 +4,13 @@
   box-sizing: border-box;
 }
 
+a {
+  color: #e67e22;
+}
+
 body {
+  height: 100%;
+  position: relative;
   background-color: white;
   color: #555;
   font-family: 'Lato', 'Arial', sans-serif;
@@ -20,20 +26,91 @@ body {
 }
 
 section {
-  padding: 80px 0;
+  padding: 40px 0;
 }
 
 .box {
   padding: 1%;
 }
 
+.container {
+  min-height: 100vh;
+  overflow: hidden;
+  display: block;
+  position: relative;
+  padding-bottom: 150px;
+}
+
+
+.section-about-clearfix::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+
 /* ----Footer---- */
 footer {
   background-color: #e67e22;
-  background-size: cover;
-  background-position: center;
-  height: 100px;
+  padding: 30px
 }
+
+.footer-layout {
+position: absolute;
+bottom: 0;
+width: 100%;
+height: 150px;
+}
+
+.footer {
+  bottom: 0;
+  width: 100%;
+  height: 140px;
+  /* margin-top: 100px; */
+}
+
+footer p {
+  text-align: center;
+  font-size: 80%;
+  margin-top: 10px;
+}
+
+.footer-nav {
+  list-style: none;
+  float: left;
+}
+
+.social-icons {
+  list-style: none;
+  float: right;
+  font-size: 150%;
+}
+
+.footer-nav li,
+.social-icons li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.footer-nav li a:link,
+.footer-nav li a:visited,
+.social-icons li a:link,
+.social-icons li a:visited {
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 90%;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom 0.2s;
+}
+
+.footer-nav li a:hover,
+.footer-nav li a:active,
+.social-icons li a:hover,
+.social-icons li a:active {
+  border-bottom: 2px solid #555;
+}
+
 
 /* ----Header---- */
 .index {
@@ -46,7 +123,6 @@ footer {
 .text-box {
   margin-top: 80px;
   margin-right: 20px;
-  float: right;
 }
 
 header {
@@ -124,8 +200,9 @@ h3 {
   color: #e67e22;
   margin-bottom: 10px;
   margin-left: 34%;
-
 }
+
+
 
 /* ----Navigation Bar---- */
 .main-nav {
@@ -159,6 +236,12 @@ h3 {
 /* ----Photo Bar---- */
 /* .section-about {
   padding: 40px;
+} */
+
+/* .section-about {
+  border: 5px solid black;
+  height: 450px;
+  width: 100%;
 } */
 
 .about-showcase {
@@ -209,9 +292,11 @@ h3 {
   background-color: #f4f4f4;
   border-radius: 5px;
   width: 90%;
-  margin-left: 100%;
+  margin-top: 40px;
+  margin-left: 99%;
+  margin-bottom: 250px;
   text-align: center;
-  box-shadow: 2px 2px 2px #e3e3e3;
+  box-shadow: 2px 2px 7px #e67e22;
 }
 
 .form-box ul {
@@ -229,8 +314,53 @@ h4{
   margin-bottom: 10px;
 }
 
+/* ----Post Form---- */
+.form-box-post {
+  background-color: #f4f4f4;
+  border-radius: 5px;
+  width: 800px;
+  height: 100%;
+  margin-left: 50%;
+  margin-bottom: 150px;
+  text-align: center;
+  box-shadow: 2px 2px 7px #e67e22;
+}
+
+.row-icon ion-icon {
+  font-size: 200%;
+  display: block;
+  color: #e67e22;
+  margin-bottom: 10px;
+
+}
+
+.form-box-post div {
+  padding: 15px;
+  border-bottom: 2px solid #e8e8e8;
+}
+
+/* ---Post Show--- */
+.post-icon {
+  font-size: 100%;
+  display: block;
+  color: #e67e22;
+  float: left;
+}
+
+/* ----Blog Show---- */
+.edit-button {
+  float: right;
+  margin-top: 10px;
+}
+
+.post-title {
+  text-align: left;
+}
+
 /* ----Buttons---- */
-button {
+button,
+.btn-full,
+.btn-ghost {
   display: inline-block;
   padding: 10px 30px;
   font-weight: 300;
@@ -266,6 +396,7 @@ button:active {
 
 .btn-full:hover,
 .btn-full:active {
+  background-color: #b05d14;
   border: 1px solid #b05d14;
 }
 

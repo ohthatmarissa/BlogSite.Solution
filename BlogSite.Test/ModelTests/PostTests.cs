@@ -22,34 +22,34 @@ namespace BlogSite.Tests
     [TestMethod]
     public void PostConstructor_CreatesNewPost_Post()
     {
-      Post newPost = new Post("", "", 0);
+      Post newPost = new Post("", "", "", 0);
       Assert.AreEqual(typeof(Post), newPost.GetType());
     }
     [TestMethod]
     public void GetTitle_GetsPostTitle_String()
     {
       string title = "title";
-      Post newPost = new Post(title, "", 0);
+      Post newPost = new Post(title, "", "", 0);
       Assert.AreEqual(title, newPost.GetTitle());
     }
     [TestMethod]
     public void GetContent_GetsPostContent_String()
     {
       string content = "content";
-      Post newPost = new Post("", content, 0);
+      Post newPost = new Post("", content, "", 0);
       Assert.AreEqual(content, newPost.GetContent());
     }
     [TestMethod]
     public void GetBlogId_GetsIdOfPostBlog_Int()
     {
       int blogId = 2;
-      Post newPost = new Post("", "", blogId);
+      Post newPost = new Post("", "", "", blogId);
       Assert.AreEqual(blogId, newPost.GetBlogId());
     }
     [TestMethod]
     public void GetId_GetsIdOfPost_Int()
     {
-      Post newPost = new Post("", "", 0);
+      Post newPost = new Post("", "", "", 0);
       Assert.AreEqual(0, newPost.GetId());
     }
 
@@ -64,7 +64,7 @@ namespace BlogSite.Tests
     [TestMethod]
     public void Save_SavesPostToDataBase_PostList()
     {
-      Post newPost = new Post("", "", 0);
+      Post newPost = new Post("", "", "", 0);
       newPost.Save();
       List <Post> result = Post.GetAll();
       List<Post> testList = new List <Post>{newPost};
@@ -73,8 +73,8 @@ namespace BlogSite.Tests
     [TestMethod]
     public void Equals_ReturnsTrueIfPostsAreSame_True()
     {
-      Post newPost = new Post("", "", 0);
-      Post newPost2 = new Post("", "", 0);
+      Post newPost = new Post("", "", "", 0);
+      Post newPost2 = new Post("", "", "", 0);
       Console.WriteLine(newPost.GetDate());
       Console.WriteLine(newPost2.GetDate());
 
@@ -83,7 +83,7 @@ namespace BlogSite.Tests
     [TestMethod]
     public void Find_ReturnsCorrectPostFromDatabase_Post()
     {
-      Post newPost = new Post("", "", 0);
+      Post newPost = new Post("", "", "", 0);
       newPost.Save();
       Post foundPost = Post.Find(newPost.GetId());
       Assert.AreEqual(newPost, foundPost);
@@ -91,9 +91,9 @@ namespace BlogSite.Tests
     [TestMethod]
     public void Delete_DeletesSpecificPost_True()
     {
-      Post newPost = new Post("", "", 0);
+      Post newPost = new Post("", "", "", 0);
       newPost.Save();
-      Post newPost2 = new Post("", "", 0);
+      Post newPost2 = new Post("", "", "", 0);
       newPost2.Save();
       newPost.Delete();
       List<Post> result = Post.GetAll();
@@ -116,6 +116,32 @@ namespace BlogSite.Tests
       Post newPost = new Post("", "", 0);
       newPost.Save();
       Post newPost2 = new Post("", "a", 1);
+      newPost2.Save();
+      List<Post> newList = new List <Post>{newPost2};
+      List <Post> result = Post.PostSearch("a");
+      Console.WriteLine(result.Count);
+      Console.WriteLine(newList.Count);
+      CollectionAssert.AreEqual(result, newList);
+    }
+
+    [TestMethod]
+    public void Edit_EditsPostElements_Strings()
+    {
+      Post newPost = new Post("", "", "", 0);
+      newPost.Save();
+      string title = "title";
+      string content = "content";
+      string file = "file";
+      newPost.Edit(title, content, file);
+      Assert.AreEqual(title, newPost.GetTitle());
+      Assert.AreEqual(content, newPost.GetContent());
+    }
+    [TestMethod]
+    public void PostSearch_SearchesForContentContainingSearchWord_Content()
+    {
+      Post newPost = new Post("", "", "", 0);
+      newPost.Save();
+      Post newPost2 = new Post("", "a", "", 1);
       newPost2.Save();
       List<Post> newList = new List <Post>{newPost2};
       List <Post> result = Post.PostSearch("a");

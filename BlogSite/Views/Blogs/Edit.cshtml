@@ -4,15 +4,41 @@
 @Html.Partial("Header")
 
 
+
 @if(Model.IsLoggedIn())
 {
-<form action="/blogs/@Model.GetId()/update" method="post">
-    <label>Blog Title:</label>
-    <input type="text" name="title" value="@Model.GetTitle()" required>
-    <label>About this blog:</label>
-    <input type="text" name="about" value="@Model.GetAbout()" required>
-    <button type="submit">Save</button>
-</form>
+<div class="row">
+  <div class="col span-1-of-3 box">
+    <div class="form-box-post">
+      <form action="/blogs/@Model.GetId()/update" method="post">
+        <div class="col span-1-of-3">
+          <ion-icon name="radio-button-off"></ion-icon>
+        </div>
+        <div class="col span-1-of-3">
+          <ion-icon name="radio-button-off"></ion-icon>
+        </div>
+        <div class="col span-1-of-3">
+          <ion-icon name="radio-button-off"></ion-icon>
+        </div>
+        <br>
+        <br>
+        <div>
+          <label>Blog Title:</label>
+          <input type="text" name="title" value="@Model.GetTitle()" required>
+        </div>
+        <br>
+        <br>
+        <div>
+          <label>About this blog:</label>
+          <textarea class= "k-textbox" style="width:100%; height: 148px;" required name="about" type="text">@Model.GetAbout()</textarea><br>
+        </div>
+        <div>
+          <button type="submit">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 }
 else
 {
