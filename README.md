@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # _**Blog Site**_
 
 ## _An application which allows users to register, add blog, add posts to the blog, add communities to their blog._
@@ -70,6 +69,3 @@ _C#/.NET/ASP.NET Core MVC/phpMyAdmin/MySQL_
 *This software is licensed under the MIT license*
 
 Copyright (c) 2019 **Zach Weintraub, Marissa Perry, Zema Kebede, Svitlana Filatova**
-=======
--Known bugs : post formatting
->>>>>>> master
