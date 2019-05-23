@@ -4,23 +4,27 @@
 
 @if(SessionBlog.GetId() != 0)
 {
-  <div class="row">
-    <div class="col span-1-of-3 box">
-      <div class="form-box-post">
-      <div class="post-icon">
-        <ion-icon name="contacts"></ion-icon>
-      </div>
-          <br>
-          <form action="/communities/create" method="post">
-              <label for="name">Community Name:</label>
-              <input type="text" name="name" required><br><br>
-              <label for="description">Brief Description:</label>
-              <input type="text" name="description" required><br><br>
-              <button type="submit">Save</button>
-          </form>
-          <br>
-      </div>
+<div class="row">
+  <div class="col span-1-of-3 box">
+    <div class="form-box-post">
+    <div class="post-icon">
+      <ion-icon name="contacts"></ion-icon>
     </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <form action="/communities/create" method="post">
+            <label for="name">Community Name:</label>
+            <input type="text" name="name" required><br><br>
+            <label for="description">Brief Description:</label>
+            <input type="text" name="description" required><br><br>
+            <button type="submit">Save</button>
+        </form>
+        <br>
+    </div>
+  </div>
   </div>
 }
 else
