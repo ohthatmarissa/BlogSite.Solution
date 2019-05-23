@@ -9,7 +9,7 @@ namespace BlogSite.Models
     private int _id;
     private string _name;
     private string _description;
-    
+
 
     public Community(string communityName, string communityDescription, int id = 0)
     {
@@ -56,7 +56,7 @@ namespace BlogSite.Models
                 return (idEquality && nameEquality && descriptionEquality);
             }
         }
-    
+
     public void Save()
     {
         MySqlConnection conn = DB.Connection();

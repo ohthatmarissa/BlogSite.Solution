@@ -11,9 +11,10 @@ namespace BlogSite.Tests
   {
     public void Dispose()
     {
+      Blog.ClearAll();
       Post.ClearAll();
+      Community.ClearAll();
     }
-
     public PostTest()
     {
       DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=blog_site_test;";
@@ -51,9 +52,6 @@ namespace BlogSite.Tests
       Post newPost = new Post("", "", "", 0);
       Assert.AreEqual(0, newPost.GetId());
     }
-    //Set title
-    //Set Content
-    //Set blogId
 
     [TestMethod]
     public void GetAll_ReturnsEmptyPostList_PostList()
@@ -70,8 +68,6 @@ namespace BlogSite.Tests
       newPost.Save();
       List <Post> result = Post.GetAll();
       List<Post> testList = new List <Post>{newPost};
-      Console.WriteLine(result[0].GetDate()+"hi");
-      Console.WriteLine(testList[0].GetDate()+"hi2");
       CollectionAssert.AreEqual(result, testList);
     }
     [TestMethod]
@@ -92,6 +88,7 @@ namespace BlogSite.Tests
       Post foundPost = Post.Find(newPost.GetId());
       Assert.AreEqual(newPost, foundPost);
     }
+    [TestMethod]
     public void Delete_DeletesSpecificPost_True()
     {
       Post newPost = new Post("", "", "", 0);
@@ -101,6 +98,30 @@ namespace BlogSite.Tests
       newPost.Delete();
       List<Post> result = Post.GetAll();
       Assert.AreEqual(newPost2, result[0]);
+    }
+    [TestMethod]
+    public void Edit_EditsPostElements_Strings()
+    {
+      Post newPost = new Post("", "", 0);
+      newPost.Save();
+      string title = "title";
+      string content = "content";
+      newPost.Edit(title, content);
+      Assert.AreEqual(title, newPost.GetTitle());
+      Assert.AreEqual(content, newPost.GetContent());
+    }
+    [TestMethod]
+    public void PostSearch_SearchesForContentContainingSearchWord_Content()
+    {
+      Post newPost = new Post("", "", 0);
+      newPost.Save();
+      Post newPost2 = new Post("", "a", 1);
+      newPost2.Save();
+      List<Post> newList = new List <Post>{newPost2};
+      List <Post> result = Post.PostSearch("a");
+      Console.WriteLine(result.Count);
+      Console.WriteLine(newList.Count);
+      CollectionAssert.AreEqual(result, newList);
     }
 
     [TestMethod]
