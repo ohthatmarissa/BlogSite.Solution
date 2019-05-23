@@ -48,6 +48,10 @@ section {
   display: block;
 }
 
+[id^="error"]{
+  color: red;
+}
+
 
 /* ----Footer---- */
 footer {
@@ -234,15 +238,7 @@ h3 {
 }
 
 /* ----Photo Bar---- */
-/* .section-about {
-  padding: 40px;
-} */
 
-/* .section-about {
-  border: 5px solid black;
-  height: 450px;
-  width: 100%;
-} */
 
 .about-showcase {
   list-style: none;
@@ -266,7 +262,7 @@ h3 {
   opacity: 0.7;
   width: 100%;
   height: auto;
-  transform: scale(1.15);
+  transform: scale(1.25);
   transition: transform 0.5s; opacity: 0.5;
 }
 
@@ -294,7 +290,7 @@ h3 {
   width: 90%;
   margin-top: 40px;
   margin-left: 99%;
-  margin-bottom: 250px;
+  /* margin-bottom: 250px; */
   text-align: center;
   box-shadow: 2px 2px 7px #e67e22;
 }
@@ -321,7 +317,7 @@ h4{
   width: 800px;
   height: 100%;
   margin-left: 50%;
-  margin-bottom: 150px;
+  /* margin-bottom: 150px; */
   text-align: center;
   box-shadow: 2px 2px 7px #e67e22;
 }
