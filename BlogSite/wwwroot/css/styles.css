@@ -42,6 +42,13 @@ section {
 }
 
 
+.section-about-clearfix::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+
 /* ----Footer---- */
 footer {
   background-color: #e67e22;
@@ -240,7 +247,6 @@ h3 {
 .about-showcase {
   list-style: none;
   width: 100%;
-  border-top: 8px solid black;
 }
 
 .about-showcase li {
@@ -273,7 +279,6 @@ h3 {
   display: block;
   float: left;
   width: 25%;
-  border-bottom: 8px solid black;
 }
 
 .about-photo img:hover {
