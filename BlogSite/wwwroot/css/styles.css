@@ -370,6 +370,12 @@ button,
   transition: background-color 0.2s, border 0.2s, color 0.2s
 }
 
+.btn-comm {
+  height: 25px;
+  width: 20px;
+  padding: 0px;
+}
+
 .btn-full:link,
 .btn-full:visited {
   background-color: #e67e22;
