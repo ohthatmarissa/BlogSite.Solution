@@ -96,7 +96,7 @@ namespace BlogSite.Tests
     [TestMethod]
     public void GetBlogs_GetsCommunityBlogs_BlogList()
     {
-      
+
     }
     // [TestMethod]
     // public void AddBlog()
