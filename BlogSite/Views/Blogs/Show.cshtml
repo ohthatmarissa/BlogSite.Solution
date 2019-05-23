@@ -56,8 +56,10 @@
                   <p>Posted by @Model.GetUsername() on @post.GetDate().ToString("MM-dd-yyyy")</p>
                   <p>@post.GetContentPreview()</p>
                   <a href="/blogs/@Model.GetId()/posts/@post.GetId()">Read more...</a>
+                  <br>
 
               }
+              <br>
           }
 
 </div>
@@ -103,6 +105,9 @@
                 </select>
                 <button type="submit">+</button>
             </form>
+            <br>
+            <p>Don't see what you're looking for? <a href="/communities/new">Start a new community!</a></p>
+            <br>
         }
 
       </div>
