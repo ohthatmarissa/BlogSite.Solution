@@ -280,7 +280,7 @@ namespace BlogSite.Models
         MySqlConnection conn = DB.Connection();
         conn.Open();
         MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-        cmd.CommandText = @"SELECT id, blog_id, title, content, date, file FROM posts WHERE content LIKE '%"+searchWord+"%';";
+        cmd.CommandText = @"SELECT id, blog_id, title, content, date, file FROM posts WHERE content LIKE '%"+searchWord+"%' OR title LIKE '%"+searchWord+"%';";
         MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
         while(rdr.Read())
         {
