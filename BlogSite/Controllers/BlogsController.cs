@@ -23,7 +23,7 @@ namespace BlogSite.Controllers
         Blog newBlog = new Blog(username, password1);
         newBlog.Save();
         Blog.Login(username, password1);
-        
+
         return RedirectToAction("Edit", new{id = newBlog.GetId()});
       }
 
