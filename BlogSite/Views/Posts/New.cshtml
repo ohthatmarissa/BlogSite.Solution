@@ -5,7 +5,7 @@
 
 @if(SessionBlog.GetId() != 0)
 {
-  @if(Model.IsLoggedIn())
+  @if(Blog.FindById(Model).IsLoggedIn())
   {
     <div class="row">
       <div class="col span-1-of-3 box">
