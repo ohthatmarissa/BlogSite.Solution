@@ -347,11 +347,9 @@ namespace BlogSite.Models
         MySqlConnection conn = DB.Connection();
         conn.Open();
         var cmd = conn.CreateCommand() as MySqlCommand;
-<<<<<<< HEAD
-        cmd.CommandText = @"SELECT communities.* FROM communities JOIN blogs_communities ON (communities.id = blogs_communities.blog_id) WHERE blog_id = @thisId;";
-=======
+
         cmd.CommandText = @"SELECT communities.* FROM communities JOIN blogs_communities ON (communities.id = blogs_communities.community_id) WHERE blog_id = @thisId;";
->>>>>>> master
+
         MySqlParameter thisId = new MySqlParameter("@thisId", _id);
         cmd.Parameters.Add(thisId);
         MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
