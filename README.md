@@ -13,6 +13,7 @@ _This application allows users to register with username and password, add blog,
 #### _User Stories_
 
 * _As an unregistered user, I need to be able to register with my username and password. Username and password must be unique._
+* _If a username or password is not unique the warning should appear._
 * _As an unregistered user I need to be able to see blogs and posts. I'm not allowed to edit or delete someones blogs or posts._
 * _As an unregistered user I need to be able to see communities._
 * _As an unregistered user I need to be able to search for a particular words in posts._
@@ -24,11 +25,6 @@ _This application allows users to register with username and password, add blog,
 * _As a registered user I need to be able to add my blog to any community._
 * _As a registered user I need to be able to remove communities form my blog._
 * _As a registered user I need to be able to add a new community._
-
-
-
-
-
 
 
 ## Setup/Installation Requirements

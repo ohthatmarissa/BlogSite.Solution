@@ -48,34 +48,6 @@ namespace BlogSite.Tests
         Assert.IsInstanceOfType(loginView, typeof(ViewResult));
       }
       
-      
-      [TestMethod]
-    public void Create_ReturnsCorrectActionType_RedirectToActionResult()
-    {
-        BlogsController controller = new BlogsController();
-        IActionResult view = controller.Create("test", "1111", "1111");
-        Assert.IsInstanceOfType(view, typeof(ViewResult));
-    }
-
-
-    [TestMethod]
-    public void Update_ReturnsCorrectActionType_RedirectToActionResult()
-    {
-        BlogsController controller = new BlogsController();
-        IActionResult view = controller.Update("test", "1111");
-        Assert.IsInstanceOfType(view, typeof(RedirectToActionResult));
-    }
-
-    [TestMethod]
-    public void Update_RedirectsToCorrectAction_Show()
-    {
-        BlogsController controller = new BlogsController();
-        RedirectToActionResult actionResult = controller.Update("test", "1111") as RedirectToActionResult;
-        string result = actionResult.ActionName;
-        Assert.AreEqual(result, "Show");
-    }
-
-
 
     [TestMethod]
     public void Logout_ReturnsCorrectActionType_RedirectToActionResult()
