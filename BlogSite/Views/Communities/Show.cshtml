@@ -3,14 +3,23 @@
 @{Layout = "_Layout";}
 @Html.Partial("Header")
 
-@if(Model.GetBlogs().Count == 0)
-{
-    <p>There are currently no blogs associated with this community :/</p>
-}
-else
-{
-    foreach(Blog blog in Model.GetBlogs())
-    {
-        <a href="/blogs/@blog.GetId()">@blog.GetTitle()</a>
-    }
-}
+<div class="row">
+  <div class="col span-1-of-3 box">
+    <div class="form-box-post">
+        <br>
+        <h3>@Model.GetDescription()</h3>
+        @if(Model.GetBlogs().Count == 0)
+        {
+            <p>There are currently no blogs associated with this community :/</p>
+        }
+        else
+        {
+            foreach(Blog blog in Model.GetBlogs())
+            {
+                <a href="/blogs/@blog.GetId()">@blog.GetTitle()</a>
+            }
+        }
+        <br><br>
+    </div>
+  </div>
+</div>

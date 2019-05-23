@@ -1,5 +1,15 @@
 $(function(){
-    $('#add-community-link').click(function(){
-        $('#add-community-form').slideToggle();
+    var allUsers = $('#allUsers').text().split(' ');
+    $('#register').click(function(e){
+        if($('#password1').val() != $('#password2').val()) {
+            e.preventDefault();
+            $('#error-username').hide();
+            $('#error-password').show();
+        }
+        if(allUsers.includes($('#username').val())) {
+            e.preventDefault();
+            $('#error-password').hide();
+            $('#error-username').show();
+        }
     });
 });

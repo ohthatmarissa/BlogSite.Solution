@@ -20,18 +20,11 @@ namespace BlogSite.Controllers
       [HttpPost("/blogs/register")]
       public ActionResult Create(string username, string password1, string password2)
       {
-        if(password1 == password2)
-        {
-          Blog newBlog = new Blog(username, password1);
-          newBlog.Save();
-          Blog.Login(username, password1);
-          
-          return View("Edit", newBlog);
-        }
-        else
-        {
-          return RedirectToAction("New");
-        }
+        Blog newBlog = new Blog(username, password1);
+        newBlog.Save();
+        Blog.Login(username, password1);
+        
+        return View("Edit", newBlog);
       }
 
       [HttpGet("/blogs/login")]
