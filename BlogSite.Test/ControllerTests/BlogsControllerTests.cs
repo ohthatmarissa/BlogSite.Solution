@@ -113,5 +113,14 @@ namespace BlogSite.Tests
     }
 
 
+    [TestMethod]
+      public void Edit_ReturnsCorrectView_True()
+      {
+        BlogsController controller = new BlogsController();
+        ActionResult newPostView = controller.Edit(1);
+        Assert.IsInstanceOfType(newPostView, typeof(ViewResult));
+      }
+
+
     }
 }

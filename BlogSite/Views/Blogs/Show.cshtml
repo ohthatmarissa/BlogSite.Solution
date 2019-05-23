@@ -56,8 +56,10 @@
                   <p>Posted by @Model.GetUsername() on @post.GetDate().ToString("MM-dd-yyyy")</p>
                   <p>@post.GetContentPreview()</p>
                   <a href="/blogs/@Model.GetId()/posts/@post.GetId()">Read more...</a>
+                  <br>
 
               }
+              <br>
           }
 
 </div>
@@ -82,7 +84,7 @@
             @foreach(Community community in Model.GetCommunities())
             {
                 <a href="/communities/@community.GetId()">@community.GetName()</a>
-                @if(Model.IsLoggedIn()){<form action="/blogs/@Model.GetId()/remove/@community.GetId()" method="post"><button type="submit">X</button></form>}
+                @if(Model.IsLoggedIn()){<form style="display: inline;" action="/blogs/@Model.GetId()/remove/@community.GetId()" method="post"><button class="btn-comm" type="submit">X</button></form>}
             }
         }
 
@@ -101,11 +103,15 @@
                         }
                     }
                 </select>
-                <button type="submit">+</button>
+                <button class="btn-comm" type="submit">+</button>
             </form>
+            <br>
+            <p>Don't see what you're looking for? <a href="/communities/new">Start a new community!</a></p>
+            <br>
         }
 
       </div>
     </div>
   </div>
 </div>
+<br>
