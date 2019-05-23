@@ -6,7 +6,13 @@
 <div class="row">
   <div class="col span-1-of-3 box">
     <div class="form-box-post">
+    <div class="post-icon">
+      <ion-icon name="contacts"></ion-icon>
+    </div>
         <br>
+        <div>
+          <h2>All Of The Cool Communities</h2>
+        </div>
         @foreach(Community community in Community.GetAll())
         {
             <p><a href="/communities/@community.GetId()">@community.GetName()</a></p>

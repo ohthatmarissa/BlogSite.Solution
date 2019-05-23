@@ -1,5 +1,6 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
+using BlogSite.Models;
 
 namespace BlogSite.Controllers
 {
@@ -9,7 +10,14 @@ namespace BlogSite.Controllers
       [HttpGet("/")]
       public ActionResult Index()
       {
-        return View();
+        if(SessionBlog.GetId() == 0)
+        {
+          return View();
+        }
+        else
+        {
+          return RedirectToAction("Show", "Blogs", new{id = SessionBlog.GetId()});
+        }
       }
 
     }

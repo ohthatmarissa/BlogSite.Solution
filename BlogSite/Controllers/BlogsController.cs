@@ -24,7 +24,7 @@ namespace BlogSite.Controllers
         newBlog.Save();
         Blog.Login(username, password1);
         
-        return View("Edit", newBlog);
+        return RedirectToAction("Edit", new{id = newBlog.GetId()});
       }
 
       [HttpGet("/blogs/login")]
@@ -38,6 +38,18 @@ namespace BlogSite.Controllers
       public ActionResult Update(string username, string password)
       {
         Blog thisBlog = Blog.FindByUsername(username);
+        if(thisBlog.GetId() == 0)
+        {
+          ViewBag.Error = "Username not found!";
+          ViewBag.Title = "Log In";
+          return View("Login");
+        }
+        if(!Blog.Authenticate(username, password))
+        {
+          ViewBag.Error = "Incorrect password!";
+          ViewBag.Title = "Log In";
+          return View("Login");
+        }
         Blog.Login(username, password);
         return RedirectToAction("Show", new{id = thisBlog.GetId()});
       }
