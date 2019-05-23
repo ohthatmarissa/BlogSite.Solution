@@ -102,31 +102,6 @@ namespace BlogSite.Tests
     [TestMethod]
     public void Edit_EditsPostElements_Strings()
     {
-      Post newPost = new Post("", "", 0);
-      newPost.Save();
-      string title = "title";
-      string content = "content";
-      newPost.Edit(title, content);
-      Assert.AreEqual(title, newPost.GetTitle());
-      Assert.AreEqual(content, newPost.GetContent());
-    }
-    [TestMethod]
-    public void PostSearch_SearchesForContentContainingSearchWord_Content()
-    {
-      Post newPost = new Post("", "", 0);
-      newPost.Save();
-      Post newPost2 = new Post("", "a", 1);
-      newPost2.Save();
-      List<Post> newList = new List <Post>{newPost2};
-      List <Post> result = Post.PostSearch("a");
-      Console.WriteLine(result.Count);
-      Console.WriteLine(newList.Count);
-      CollectionAssert.AreEqual(result, newList);
-    }
-
-    [TestMethod]
-    public void Edit_EditsPostElements_Strings()
-    {
       Post newPost = new Post("", "", "", 0);
       newPost.Save();
       string title = "title";
