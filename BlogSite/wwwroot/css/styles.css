@@ -208,6 +208,7 @@ h3 {
 
 
 
+
 /* ----Navigation Bar---- */
 .main-nav {
   float: right;
@@ -317,7 +318,8 @@ h4{
   width: 800px;
   height: 100%;
   margin-left: 50%;
-  /* margin-bottom: 150px; */
+  padding-left: 20px;
+  padding-right: 20px;
   text-align: center;
   box-shadow: 2px 2px 7px #e67e22;
 }
@@ -354,6 +356,10 @@ h4{
 }
 
 /* ----Buttons---- */
+button:focus {
+  outline:0;
+}
+
 button,
 .btn-full,
 .btn-ghost {
@@ -368,6 +374,12 @@ button,
   color: white;
   margin-right: 15px;
   transition: background-color 0.2s, border 0.2s, color 0.2s
+}
+
+.btn-comm {
+  height: 25px;
+  width: 20px;
+  padding: 0px;
 }
 
 .btn-full:link,

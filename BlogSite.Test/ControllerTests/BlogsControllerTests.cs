@@ -47,7 +47,6 @@ namespace BlogSite.Tests
         ActionResult loginView = controller.Login();
         Assert.IsInstanceOfType(loginView, typeof(ViewResult));
       }
-      
 
     [TestMethod]
     public void Logout_ReturnsCorrectActionType_RedirectToActionResult()
