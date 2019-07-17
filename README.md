@@ -2,7 +2,7 @@
 
 ## _An application which allows users to register, add blog, add posts to the blog, add communities to their blog._
 
-#### _**By Zach Weintraub, Marissa Perry, Zema Kebede, Svitlana Filatova**_
+#### _**By Zach Weintraub(back end), Marissa Perry(front end), Zema Kebede(testing), Svitlana Filatova(back end)**_
 
 ## Description
 
