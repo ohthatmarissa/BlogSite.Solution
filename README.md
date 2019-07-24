@@ -1,6 +1,7 @@
 # _**Blog Site**_
 
 ## _An application which allows users to register, add blog, add posts to the blog, add communities to their blog._
+## Check it out here: http://super-awesome-blog.herokuapp.com/
 
 #### _**By Zach Weintraub(back end), Marissa Perry(front end), Zema Kebede(testing), Svitlana Filatova(back end)**_
 
